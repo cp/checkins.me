@@ -42,7 +42,7 @@ app.use(session({
   secret: sessionSecret,
   resave: false
 }));
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
 passport.serializeUser((user, done) => {
@@ -100,7 +100,7 @@ const routeHandlers = {
     res.json(req.user);
   },
   webhook: (req, res) => {
-    const checkin = req.body.checkin;
+    const checkin = JSON.parse(req.body.checkin);
     const userId = parseInt(checkin.user.id);
 
     return User.findById(userId).then(user => {
