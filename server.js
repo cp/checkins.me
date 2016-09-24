@@ -57,46 +57,46 @@ const ensureAuthenticated = (req, res, next) => {
   //res.sendStatus(401);
 }
 
-app.get('/', (req, res) => {
-  res.send('hello world!');
-});
+const routeHandlers = {
+  noOp: () => {},
+  home: (req, res) => res.send('Hello world'),
+  callback: (req, res) => {
+    req.session.userId = req.user.id;
 
-app.get('/authenticate', passport.authenticate('foursquare'), (req, res) => {});
+    if (req.query.redirect) {
+      res.redirect(req.query.redirect);
+    }
 
-app.get('/authenticate/callback', passport.authenticate('foursquare'), (req, res) => {
-  req.session.userId = req.user.id;
+    res.json(req.user);
+  },
+  sync: (req, res) => {
+    const userId = req.session.userId;
 
-  if (req.query.redirect) {
-    res.redirect(req.query.redirect);
-  }
+    User.findById(userId).then(user => {
+      request
+        .get('https://api.foursquare.com/v2/users/self/checkins')
+        .query({ oauth_token: user.foursquare_token, v: 20140806, limit: 250 })
+        .end((err, res) => {
+          const checkins = res.body.response.checkins.items;
 
-  res.json(req.user);
-});
-
-app.get('/sync', ensureAuthenticated, (req, res) => {
-  const userId = req.session.userId;
-
-  User.findById(userId).then(user => {
-    request
-      .get('https://api.foursquare.com/v2/users/self/checkins')
-      .query({ oauth_token: user.foursquare_token, v: 20140806, limit: 250 })
-      .end((err, res) => {
-        const checkins = res.body.response.checkins.items;
-
-        Checkin.createFromResponseAndUser(checkins, userId).then(created => {
-          console.log('created', created);
+          Checkin.createFromResponseAndUser(checkins, userId);
         });
-      });
-  });
+    });
 
-  res.sendStatus(204);
-});
+    res.sendStatus(204);
+  },
+  logout: (req, res) => {
+    req.logout();
 
-app.get('/sessions/destroy', ensureAuthenticated, (req, res) => {
-  req.logout();
+    res.sendStatus(200);
+  }
+}
 
-  res.sendStatus(200);
-});
+app.get('/', routeHandlers.home);
+app.get('/authenticate', passport.authenticate('foursquare'), routeHandlers.noOp);
+app.get('/authenticate/callback', passport.authenticate('foursquare'), routeHandlers.callback);
+app.get('/sessions/destroy', ensureAuthenticated, routeHandlers.logout);
+app.get('/sync', ensureAuthenticated, routeHandlers.sync);
 
 app.listen(app.get('port'), () => {
   console.log('checkins.me listening on ' + app.get('port'));
