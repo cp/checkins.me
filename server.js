@@ -3,6 +3,7 @@ import express from 'express';
 import passport from 'passport';
 import request from 'superagent';
 import sequelize from 'sequelize';
+import bodyParser from 'body-parser';
 import session from 'express-session';
 import FoursquareStrategy from 'passport-foursquare';
 
@@ -14,6 +15,7 @@ import {
 const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/config/config.'+ env +'.json');
 const clientId = config.clientId || process.env.CLIENT_ID;
+
 const clientSecret = config.clientSecret || process.env.CLIENT_SECRET;
 const callbackURL = config.callbackURL || process.env.CALLBACK_URL;
 const sessionSecret = config.session || process.env.SESSION;
@@ -40,6 +42,7 @@ app.use(session({
   secret: sessionSecret,
   resave: false
 }));
+app.use(bodyParser.json());
 app.use(cors());
 
 passport.serializeUser((user, done) => {
@@ -57,6 +60,33 @@ const ensureAuthenticated = (req, res, next) => {
   //res.sendStatus(401);
 }
 
+const statics = {
+  formatCheckin: (checkin, user) => {
+    checkin.event = checkin.event || {};
+    checkin.venue = checkin.venue || {};
+    checkin.venue.location = checkin.venue.location || {};
+    const category = checkin.venue.categories
+      .filter(c => c.primary === true)[0].name;
+
+    return {
+      id: checkin.id,
+      userId: user,
+      category,
+      venue: checkin.venue.name,
+      score: checkin.score ? checkin.score.total : 0,
+      checkinTime: checkin.createdAt,
+      city: checkin.venue.location.city,
+      state: checkin.venue.location.state,
+      country: checkin.venue.location.country,
+      address: checkin.venue.location.address,
+      crossStreet: checkin.venue.location.crossStreet,
+      event: checkin.event.name,
+      timeZoneOffset: checkin.timeZoneOffset,
+    };
+
+  }
+};
+
 const routeHandlers = {
   noOp: () => {},
   home: (req, res) => res.send('Hello world'),
@@ -69,6 +99,18 @@ const routeHandlers = {
 
     res.json(req.user);
   },
+  webhook: (req, res) => {
+    const checkin = req.body.checkin;
+    const userId = parseInt(checkin.user.id);
+
+    return User.findById(userId).then(user => {
+      const formatted = statics.formatCheckin(checkin, userId);
+
+      return Checkin.create(formatted).then(() => {
+        return res.sendStatus(204);
+      });
+    });
+  },
   sync: (req, res) => {
     const userId = req.session.userId;
 
@@ -78,8 +120,9 @@ const routeHandlers = {
         .query({ oauth_token: user.foursquare_token, v: 20140806, limit: 250 })
         .end((err, res) => {
           const checkins = res.body.response.checkins.items;
+          const formatted = checkins.map(c => statics.formatCheckin(c, userId));
 
-          Checkin.createFromResponseAndUser(checkins, userId);
+          Checkin.bulkCreate(formatted);
         });
     });
 
@@ -90,13 +133,14 @@ const routeHandlers = {
 
     res.sendStatus(200);
   }
-}
+};
 
 app.get('/', routeHandlers.home);
 app.get('/authenticate', passport.authenticate('foursquare'), routeHandlers.noOp);
 app.get('/authenticate/callback', passport.authenticate('foursquare'), routeHandlers.callback);
 app.get('/sessions/destroy', ensureAuthenticated, routeHandlers.logout);
 app.get('/sync', ensureAuthenticated, routeHandlers.sync);
+app.post('/webhook', routeHandlers.webhook);
 
 app.listen(app.get('port'), () => {
   console.log('checkins.me listening on ' + app.get('port'));
