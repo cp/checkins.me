@@ -65,8 +65,12 @@ const statics = {
     checkin.event = checkin.event || {};
     checkin.venue = checkin.venue || {};
     checkin.venue.location = checkin.venue.location || {};
-    const category = checkin.venue.categories
+    let category;
+
+    if (checkin.venue && checkin.venue.categories && checkin.venue.categories.length) {
+      category = checkin.venue.categories
       .filter(c => c.primary === true)[0].name;
+    }
 
     return {
       id: checkin.id,
@@ -83,7 +87,40 @@ const statics = {
       event: checkin.event.name,
       timeZoneOffset: checkin.timeZoneOffset,
     };
+  },
+  getCheckins: (token, callback) => {
+    // Trying to consume 4sq's pagination.
+    // this impl seems really naive on my part...
+    const limit = 250; // Max 4sq will give us.
+    const requests = [];
 
+    const doRequest = offset => {
+      return request
+        .get('https://api.foursquare.com/v2/users/self/checkins')
+        .query({ oauth_token: token, v: 20140806, limit, offset })
+    }
+
+    return request
+      .get('https://api.foursquare.com/v2/users/self/checkins')
+      .query({ oauth_token: token, v: 20140806, limit: 1 })
+      .then((res, err) => {
+        let offset = 0
+        let total = res.body.response.checkins.count;
+
+        while (offset < total) {
+          requests.push(doRequest(offset));
+          offset += limit
+        }
+
+        return Promise.all(requests).then((res, err) => {
+          let checkins = [];
+          res.forEach(r => {
+            checkins = checkins.concat(r.body.response.checkins.items);
+          })
+
+          return callback(checkins, err);
+        });
+      });
   }
 };
 
@@ -115,15 +152,13 @@ const routeHandlers = {
     const userId = req.session.userId;
 
     User.findById(userId).then(user => {
-      request
-        .get('https://api.foursquare.com/v2/users/self/checkins')
-        .query({ oauth_token: user.foursquare_token, v: 20140806, limit: 250 })
-        .end((err, res) => {
-          const checkins = res.body.response.checkins.items;
-          const formatted = checkins.map(c => statics.formatCheckin(c, userId));
+      const token = user.foursquare_token;
 
-          Checkin.bulkCreate(formatted);
-        });
+      return statics.getCheckins(token, checkins => {
+        const formatted = checkins.map(c => statics.formatCheckin(c, userId));
+
+        Checkin.bulkCreate(formatted);
+      });
     });
 
     res.sendStatus(204);
