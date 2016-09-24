@@ -1,20 +1,7 @@
 {
-  "development": {
-    "username": "ca",
-    "password": null,
-    "database": "checkins",
-    "host": "127.0.0.1",
-    "session": "development",
-    "clientId": "clientId",
-    "clientSecret": "clientSecret",
-    "callbackURL": "http://127.0.0.1:4200/authenticate/callback",
-    "dialect": "postgres"
-  },
-  "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
-  }
+  "username": "root",
+  "password": null,
+  "database": "database_production",
+  "host": "127.0.0.1",
+  "dialect": "mysql"
 }

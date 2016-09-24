@@ -3,4 +3,4 @@
 /dist
 *.sw[onp]
 npm-debug.log
-/config/config.json
+/config/config.development.json

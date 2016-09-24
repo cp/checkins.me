@@ -12,7 +12,7 @@ import {
 } from './models';
 
 const env = process.env.NODE_ENV || 'development';
-const config = require(__dirname + '/config/config.json')[env];
+const config = require(__dirname + '/config/config.'+ env +'.json');
 const clientId = config.clientId || process.env.CLIENT_ID;
 const clientSecret = config.clientSecret || process.env.CLIENT_SECRET;
 const callbackURL = config.callbackURL || process.env.CALLBACK_URL;
