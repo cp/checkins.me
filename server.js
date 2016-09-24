@@ -130,11 +130,7 @@ const routeHandlers = {
   callback: (req, res) => {
     req.session.userId = req.user.id;
 
-    if (req.query.redirect) {
-      res.redirect(req.query.redirect);
-    }
-
-    res.json(req.user);
+    res.redirect(`http://127.0.0.1:3000/${req.user.id}`);
   },
   webhook: (req, res) => {
     const checkin = JSON.parse(req.body.checkin);
