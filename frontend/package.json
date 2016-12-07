@@ -6,13 +6,15 @@
     "react-scripts": "0.5.1"
   },
   "dependencies": {
+    "@reflect/reflect-ui": "^0.3.1",
+    "gulp-sass": "^2.3.2",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-router": "^2.8.1"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && cp build/index.html build/200.html",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }

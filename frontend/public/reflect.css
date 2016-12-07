@@ -1,0 +1,3992 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,300,600");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,300,600");
+@import url("//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700");
+@import url("//fonts.googleapis.com/css?family=Montserrat");
+.react-grid-layout {
+  position: relative;
+  transition: height 200ms ease; }
+
+.react-grid-item {
+  transition: all 200ms ease;
+  transition-property: left, top; }
+
+.react-grid-item.cssTransforms {
+  transition-property: transform; }
+
+.react-grid-item.resizing {
+  z-index: 1; }
+
+.react-grid-item.react-draggable-dragging {
+  transition: none;
+  z-index: 3; }
+
+.react-grid-item.react-grid-placeholder {
+  background: red;
+  opacity: 0.2;
+  transition-duration: 100ms;
+  z-index: 2;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none; }
+
+.react-grid-item > .react-resizable-handle {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  bottom: 0;
+  right: 0;
+  background: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/Pg08IS0tIEdlbmVyYXRvcjogQWRvYmUgRmlyZXdvcmtzIENTNiwgRXhwb3J0IFNWRyBFeHRlbnNpb24gYnkgQWFyb24gQmVhbGwgKGh0dHA6Ly9maXJld29ya3MuYWJlYWxsLmNvbSkgLiBWZXJzaW9uOiAwLjYuMSAgLS0+DTwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DTxzdmcgaWQ9IlVudGl0bGVkLVBhZ2UlMjAxIiB2aWV3Qm94PSIwIDAgNiA2IiBzdHlsZT0iYmFja2dyb3VuZC1jb2xvcjojZmZmZmZmMDAiIHZlcnNpb249IjEuMSINCXhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbDpzcGFjZT0icHJlc2VydmUiDQl4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjZweCIgaGVpZ2h0PSI2cHgiDT4NCTxnIG9wYWNpdHk9IjAuMzAyIj4NCQk8cGF0aCBkPSJNIDYgNiBMIDAgNiBMIDAgNC4yIEwgNCA0LjIgTCA0LjIgNC4yIEwgNC4yIDAgTCA2IDAgTCA2IDYgTCA2IDYgWiIgZmlsbD0iIzAwMDAwMCIvPg0JPC9nPg08L3N2Zz4=");
+  background-position: bottom right;
+  padding: 0 3px 3px 0;
+  background-repeat: no-repeat;
+  background-origin: content-box;
+  box-sizing: border-box;
+  cursor: se-resize; }
+
+.react-resizable {
+  position: relative; }
+
+.react-resizable-handle {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  bottom: 0;
+  right: 0;
+  background: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/Pg08IS0tIEdlbmVyYXRvcjogQWRvYmUgRmlyZXdvcmtzIENTNiwgRXhwb3J0IFNWRyBFeHRlbnNpb24gYnkgQWFyb24gQmVhbGwgKGh0dHA6Ly9maXJld29ya3MuYWJlYWxsLmNvbSkgLiBWZXJzaW9uOiAwLjYuMSAgLS0+DTwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DTxzdmcgaWQ9IlVudGl0bGVkLVBhZ2UlMjAxIiB2aWV3Qm94PSIwIDAgNiA2IiBzdHlsZT0iYmFja2dyb3VuZC1jb2xvcjojZmZmZmZmMDAiIHZlcnNpb249IjEuMSINCXhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbDpzcGFjZT0icHJlc2VydmUiDQl4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjZweCIgaGVpZ2h0PSI2cHgiDT4NCTxnIG9wYWNpdHk9IjAuMzAyIj4NCQk8cGF0aCBkPSJNIDYgNiBMIDAgNiBMIDAgNC4yIEwgNCA0LjIgTCA0LjIgNC4yIEwgNC4yIDAgTCA2IDAgTCA2IDYgTCA2IDYgWiIgZmlsbD0iIzAwMDAwMCIvPg0JPC9nPg08L3N2Zz4=");
+  background-position: bottom right;
+  padding: 0 3px 3px 0;
+  background-repeat: no-repeat;
+  background-origin: content-box;
+  box-sizing: border-box;
+  cursor: se-resize; }
+
+.viz-container * {
+  box-sizing: border-box; }
+
+.viz-container h1, .viz-container h2, .viz-container h3, .viz-container h4, .viz-container h5, .viz-container h6 {
+  margin: 0;
+  padding: 0; }
+
+.viz-container {
+  font-family: "Open Sans", sans-serif !important;
+  color: #6D7A87; }
+  .viz-container h1, .viz-container h2, .viz-container h3, .viz-container h4, .viz-container h5, .viz-container h6 {
+    font-family: "Open Sans", sans-serif !important;
+    font-weight: 400; }
+  .viz-container p {
+    font-family: "Open Sans", sans-serif !important; }
+
+.viz-container a {
+  color: #ffa633; }
+  .viz-container a:hover {
+    color: #ff9000; }
+
+.react-grid-item {
+  transition: none; }
+
+.viz-view-container {
+  margin-left: -6px;
+  margin-right: -6px;
+  margin-bottom: 12px; }
+
+.viz-row {
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 12px; }
+  .viz-row:after {
+    content: " ";
+    display: block;
+    clear: both; }
+  .viz-row .viz-column {
+    -webkit-transform: translateZ(0); }
+  .viz-row:last-child {
+    margin-bottom: 0; }
+  .viz-row .viz-row .viz-container {
+    height: 144px; }
+  .viz-row .viz-row .viz-column:first-of-type {
+    padding-left: 0; }
+  .viz-row .viz-row .viz-column:last-of-type {
+    padding-right: 0; }
+
+.viz-full {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+  float: left;
+  padding-left: 6px;
+  padding-right: 6px; }
+
+.viz-half {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 50%;
+  float: left;
+  padding-left: 6px;
+  padding-right: 6px; }
+
+.viz-third {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 33.3333%;
+  float: left;
+  padding-left: 6px;
+  padding-right: 6px; }
+
+.viz-quarter {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 25%;
+  float: left;
+  padding-left: 6px;
+  padding-right: 6px; }
+
+@media (max-width: 768px) {
+  .viz-half {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    float: left;
+    padding-left: 6px;
+    padding-right: 6px;
+    margin-bottom: 12px; }
+    .viz-half:last-of-type {
+      margin-bottom: 0; } }
+
+.react-grid-item.react-grid-placeholder {
+  border-radius: 5px;
+  background: #bcbcbc; }
+
+.viz-container {
+  position: relative;
+  background-color: #FFF;
+  min-height: 150px;
+  height: inherit;
+  border: 1px solid #EFEFEF;
+  border-radius: 5px;
+  padding: 12px;
+  box-sizing: border-box; }
+  .viz-container .viz-container-remove {
+    pointer-events: all !important;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1000000;
+    background: #ffa633;
+    border-bottom-left-radius: 5px;
+    padding: 5px 5px 4px 7px; }
+    .viz-container .viz-container-remove svg * {
+      fill: white; }
+  .viz-container.viz-container-selectable {
+    cursor: pointer; }
+    .viz-container.viz-container-selectable * {
+      pointer-events: none; }
+    .viz-container.viz-container-selectable:not(.viz-dragging):hover:not(.viz-container-selected) {
+      border-color: #EFEFEF;
+      box-shadow: 0px 0px 0px 2px #EFEFEF; }
+    .viz-container.viz-container-selectable:not(.viz-dragging).viz-container-selected {
+      border: 1px solid #ffa633;
+      box-shadow: 0px 0px 0px 2px #ffa633; }
+  .viz-container.viz-container-editable:not(.viz-container-selected) .viz-message-content .viz-text-segment {
+    color: #ffa633;
+    border-bottom: 2px #ffa633 solid; }
+  .viz-container.viz-datagrid {
+    padding: 0px; }
+    .viz-container.viz-datagrid .viz-loading-wrapper {
+      padding: 10px !important; }
+  .viz-container .viz-message-content {
+    height: auto;
+    font-size: 18px;
+    color: #6D7A87;
+    text-align: center;
+    width: 100%;
+    position: relative;
+    align-self: center; }
+    .viz-container .viz-message-content .viz-text-segment:after {
+      content: "\00a0 "; }
+  .viz-container .viz-loading-wrapper {
+    position: absolute;
+    z-index: 100;
+    background-color: #FFF;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border-radius: 5px; }
+    .viz-container .viz-loading-wrapper .viz-loading {
+      color: transparent;
+      text-indent: 0; }
+  .viz-container .viz-visualization {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    overflow: hidden; }
+  .viz-container .viz-message {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none; }
+  .viz-container.viz-has-title .viz-visualization {
+    top: 37px; }
+  .viz-container.viz-has-controls .viz-visualization {
+    top: 30px; }
+  .viz-container.viz-has-title.viz-has-controls .viz-visualization {
+    top: 67px; }
+
+.viz-legacy-grid .viz-container:not(.viz-datagrid):not(.viz-kpi) {
+  height: 300px;
+  min-height: auto; }
+
+.viz-legacy-grid .viz-kpi {
+  height: 144px; }
+
+.reflect-viz {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0; }
+
+.viz-kpi .viz-line, .viz-kpi .viz-area {
+  height: 55px;
+  position: absolute;
+  bottom: 0; }
+
+.viz-kpi .viz-line .viz-series.viz-series-0.viz-color-0.viz-line-path {
+  stroke: #EFEFEF; }
+
+.viz-kpi .viz-area .viz-series.viz-series-0.viz-color-0.viz-area-path {
+  fill: #EFEFEF;
+  stroke: #EFEFEF; }
+
+.viz-kpi .viz-group {
+  height: 100%; }
+  .viz-kpi .viz-group .viz-loading-wrapper {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%; }
+
+.viz-kpi .viz-metric {
+  position: absolute;
+  left: 12px; }
+
+.viz-options {
+  background-color: #FFF;
+  position: absolute;
+  right: 12px;
+  top: 12px; }
+  .viz-options .viz-option {
+    margin-left: 12px; }
+
+.viz-table {
+  width: 100%; }
+  .viz-table th {
+    border-left: 1px solid #EFEFEF;
+    color: #b2bac1;
+    font-weight: 600 !important; }
+    .viz-table th:first-child {
+      border-left: 0px; }
+  .viz-table tr:hover td {
+    background: #f6f6f6; }
+  .viz-table tr:last-child {
+    border-bottom: 1px solid #EFEFEF; }
+  .viz-table td {
+    font-size: 16px;
+    background: #fff;
+    border-top: 1px solid #EFEFEF;
+    border-left: 1px solid #EFEFEF; }
+    .viz-table td:first-child {
+      border-left: 0px; }
+
+.viz-short {
+  height: 150px; }
+
+.viz-title {
+  color: inherit;
+  font-size: 1.5em;
+  line-height: 1.5em;
+  text-transform: none;
+  padding: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; }
+
+.viz-container .viz-title {
+  margin: 0 !important; }
+
+.viz-controls {
+  background-color: #FFF; }
+
+.viz-required-dimensions, .viz-optional-dimensions, .viz-optional-metrics {
+  display: inline-block; }
+  .viz-required-dimensions a, .viz-optional-dimensions a, .viz-optional-metrics a {
+    font-weight: 600;
+    border-bottom: 1px solid;
+    text-decoration: none; }
+
+.viz-picker > a {
+  font-weight: 600;
+  color: #ffa633 !important;
+  border-bottom: 1px solid;
+  text-decoration: none; }
+  .viz-picker > a:hover {
+    color: #ff9000 !important; }
+
+.viz-control-dimensions, .viz-control-metrics {
+  display: inline-block; }
+
+.viz-header {
+  margin-top: 12px;
+  height: 38px;
+  display: flex;
+  align-items: center; }
+  .viz-header:last-of-type {
+    margin-bottom: 12px; }
+  .viz-header .viz-headline .viz-dashboard-icon, .viz-header .viz-headline .viz-title {
+    display: inline-block;
+    vertical-align: middle; }
+  .viz-header .viz-headline .viz-dashboard-icon {
+    height: 14px;
+    width: 14px;
+    border-radius: 100px;
+    border: 3px solid #ffa633;
+    box-sizing: content-box; }
+  .viz-header .viz-headline .viz-title {
+    position: static;
+    font-family: "Open Sans", sans-serif;
+    color: #6D7A87;
+    font-size: 26px;
+    line-height: 26px;
+    font-weight: 400;
+    margin-left: 6px !important; }
+
+.viz-options {
+  position: absolute;
+  right: 15px;
+  top: 15px; }
+  .viz-options .viz-button-group .viz-button {
+    padding-top: 4px;
+    padding: 3px 5px 3px 5px; }
+
+.viz-controls {
+  background-color: #FFF; }
+  .viz-controls .viz-separator {
+    color: #999; }
+    .viz-controls .viz-separator:before, .viz-controls .viz-separator:after {
+      content: "\00a0 "; }
+  .viz-controls .viz-control-dimensions, .viz-controls .viz-control-metrics, .viz-controls .viz-control-groups {
+    line-height: 1.1em;
+    display: inline-block; }
+    .viz-controls .viz-control-dimensions .viz-picker > a, .viz-controls .viz-control-metrics .viz-picker > a, .viz-controls .viz-control-groups .viz-picker > a {
+      font-weight: 600;
+      text-decoration: none; }
+    .viz-controls .viz-control-dimensions .viz-required-field, .viz-controls .viz-control-dimensions .viz-selected-field, .viz-controls .viz-control-metrics .viz-required-field, .viz-controls .viz-control-metrics .viz-selected-field, .viz-controls .viz-control-groups .viz-required-field, .viz-controls .viz-control-groups .viz-selected-field {
+      font-weight: 600; }
+
+.viz-arrow {
+  float: right;
+  vertical-align: middle; }
+
+.viz-pagination {
+  display: inline-block;
+  padding-left: 0;
+  border-radius: 5px;
+  margin: 8px 0 8px 0; }
+  .viz-pagination > li {
+    display: inline; }
+    .viz-pagination > li > a,
+    .viz-pagination > li > span {
+      cursor: pointer;
+      position: relative;
+      float: left;
+      padding: 4px 8px 4px 8px;
+      line-height: 1.1em;
+      text-decoration: none;
+      color: #6D7A87;
+      background-color: #FFF;
+      border: 1px solid #d6d6d6;
+      margin-left: -1px; }
+    .viz-pagination > li:first-child > a,
+    .viz-pagination > li:first-child > span {
+      margin-left: 0;
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px; }
+    .viz-pagination > li:last-child > a,
+    .viz-pagination > li:last-child > span {
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px; }
+  .viz-pagination > li > a:hover, .viz-pagination > li > a:focus,
+  .viz-pagination > li > span:hover,
+  .viz-pagination > li > span:focus {
+    z-index: 2;
+    color: #FFF;
+    background-color: #d6d6d6; }
+  .viz-pagination > .active > a, .viz-pagination > .active > a:hover, .viz-pagination > .active > a:focus,
+  .viz-pagination > .active > span,
+  .viz-pagination > .active > span:hover,
+  .viz-pagination > .active > span:focus {
+    z-index: 3;
+    background-color: #d6d6d6;
+    border-color: #d6d6d6;
+    color: #FFF;
+    cursor: default; }
+  .viz-pagination > .disabled > span,
+  .viz-pagination > .disabled > span:hover,
+  .viz-pagination > .disabled > span:focus,
+  .viz-pagination > .disabled > a,
+  .viz-pagination > .disabled > a:hover,
+  .viz-pagination > .disabled > a:focus {
+    color: #6D7A87;
+    cursor: not-allowed;
+    background-color: #FFF; }
+
+.viz-filters {
+  position: relative;
+  border-radius: 5px;
+  border: 1px solid #EFEFEF;
+  box-sizing: border-box;
+  height: 38px; }
+  .viz-filters hr {
+    border-top: 0px solid #EFEFEF; }
+  .viz-filters .form-group {
+    width: 100%; }
+  .viz-filters.viz-filters-unconfigured {
+    border: 1px dashed #EFEFEF; }
+    .viz-filters.viz-filters-unconfigured .viz-filters-unconfigured-message {
+      color: #6D7A87;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%; }
+  .viz-filters > .viz-button {
+    position: absolute;
+    border-radius: 0;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    margin: -1px 0px 0px -1px;
+    padding: 8.5px 12px;
+    height: 38px; }
+    .viz-filters > .viz-button .viz-icon-plus:before {
+      font-size: 17px; }
+    .viz-filters > .viz-button:hover {
+      color: #ffa633; }
+    .viz-filters > .viz-button.viz-button-disabled:hover {
+      color: #6D7A87; }
+  .viz-filters .viz-add-filter-form .viz-container-inline {
+    padding-left: 15px;
+    padding-right: 15px; }
+  .viz-filters .viz-add-filter-form .viz-button {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 100%;
+    font-size: 16px; }
+  .viz-filters .viz-add-filter-form.viz-dropdown-open {
+    top: 0px;
+    left: 45px; }
+  .viz-filters .viz-filter {
+    position: relative;
+    left: 50px;
+    padding-right: 12px;
+    display: inline-block;
+    border-radius: 0;
+    border-right: 1px solid #EFEFEF;
+    vertical-align: middle;
+    padding: 9px 15px;
+    height: 38px -2; }
+    .viz-filters .viz-filter .viz-filter-field {
+      color: #6D7A87; }
+    .viz-filters .viz-filter .viz-filter-operator {
+      color: #88949f; }
+    .viz-filters .viz-filter .viz-filter-value {
+      color: #6D7A87; }
+    .viz-filters .viz-filter .viz-filter-field,
+    .viz-filters .viz-filter .viz-filter-operator,
+    .viz-filters .viz-filter .viz-filter-value {
+      margin-right: 4px; }
+    .viz-filters .viz-filter .viz-icon-cancel-circled {
+      color: #6D7A87;
+      cursor: pointer; }
+      .viz-filters .viz-filter .viz-icon-cancel-circled:hover {
+        color: #E62E53; }
+
+.viz-dropdown {
+  position: absolute;
+  left: 0;
+  top: -45px;
+  display: none;
+  background-color: #FFF;
+  z-index: 1000;
+  border-radius: 3px; }
+  .viz-dropdown .viz-subheader {
+    color: #999;
+    padding: 15px; }
+  .viz-dropdown .viz-container-inline .viz-input {
+    margin-bottom: 15px; }
+  .viz-dropdown hr {
+    margin-top: 0;
+    margin-bottom: 0; }
+  .viz-dropdown ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    margin-top: -5px;
+    padding-bottom: 10px; }
+  .viz-dropdown.viz-dropdown-open {
+    display: block;
+    min-width: 260px;
+    position: absolute;
+    border: 0px;
+    z-index: 1500;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.2); }
+  .viz-dropdown li {
+    display: block;
+    cursor: pointer; }
+    .viz-dropdown li:not(.viz-disabled):hover .viz-label {
+      background-color: #ff9000;
+      color: #FFF; }
+      .viz-dropdown li:not(.viz-disabled):hover .viz-label:before {
+        color: #fff; }
+    .viz-dropdown li .viz-label {
+      color: #6D7A87;
+      display: block;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 16px;
+      cursor: pointer;
+      padding: 12px;
+      margin: 0; }
+      .viz-dropdown li .viz-label:before {
+        display: inline-block;
+        margin-right: 8px;
+        margin-top: -1px;
+        content: '\0025CF';
+        font-size: 1em;
+        color: #ffa633; }
+  .viz-dropdown .viz-disabled .viz-label {
+    background-color: #EFEFEF;
+    color: #fff;
+    cursor: default; }
+    .viz-dropdown .viz-disabled .viz-label:before {
+      color: #fff; }
+  .viz-dropdown .viz-selected .viz-label {
+    background-color: #ffa633;
+    color: #fff; }
+    .viz-dropdown .viz-selected .viz-label:before {
+      color: #fff; }
+
+.viz-legacy-grid .viz-datagrid {
+  height: 100%; }
+  .viz-legacy-grid .viz-datagrid .viz-visualization {
+    position: inherit; }
+  .viz-legacy-grid .viz-datagrid .viz-datagrid-header {
+    position: inherit; }
+  .viz-legacy-grid .viz-datagrid .viz-datagrid-content {
+    position: inherit; }
+  .viz-legacy-grid .viz-datagrid .viz-datagrid-footer {
+    position: inherit; }
+
+.viz-grid .viz-datagrid .viz-loading-wrapper {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  right: 0;
+  bottom: 40px; }
+
+.viz-datagrid th span {
+  vertical-align: middle; }
+  .viz-datagrid th span.viz-arrow {
+    float: right; }
+
+.viz-datagrid th.viz-sorted span {
+  color: #6D7A87; }
+
+.viz-datagrid .viz-datagrid-header {
+  height: 40px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 100;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  background-color: #EFEFEF;
+  padding: 10px; }
+  .viz-datagrid .viz-datagrid-header .viz-datagrid-controls {
+    margin: -4px; }
+    .viz-datagrid .viz-datagrid-header .viz-datagrid-controls .viz-button {
+      font-size: 12px;
+      padding: 3px 8px;
+      border-radius: 5px;
+      border: 1px solid #ccc; }
+    .viz-datagrid .viz-datagrid-header .viz-datagrid-controls .viz-search-controls, .viz-datagrid .viz-datagrid-header .viz-datagrid-controls .viz-export-controls {
+      margin-left: 6px;
+      display: inline-block; }
+      .viz-datagrid .viz-datagrid-header .viz-datagrid-controls .viz-search-controls input, .viz-datagrid .viz-datagrid-header .viz-datagrid-controls .viz-export-controls input {
+        font-size: 12px;
+        padding: 5px 5px;
+        border-radius: 5px;
+        position: relative;
+        width: 200px;
+        height: 25px;
+        border: 1px solid #ccc;
+        box-sizing: border-box; }
+        .viz-datagrid .viz-datagrid-header .viz-datagrid-controls .viz-search-controls input:focus, .viz-datagrid .viz-datagrid-header .viz-datagrid-controls .viz-export-controls input:focus {
+          border-color: #ffa633;
+          outline: none;
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #ffa633; }
+
+.viz-datagrid .viz-table {
+  color: #6D7A87;
+  width: 100%;
+  border-spacing: 0;
+  border-collapse: collapse; }
+  .viz-datagrid .viz-table td.viz-table-cell-clickable {
+    cursor: pointer; }
+    .viz-datagrid .viz-table td.viz-table-cell-clickable:hover {
+      color: #333; }
+
+.viz-datagrid .viz-table-dimension {
+  text-align: left; }
+  .viz-datagrid .viz-table-dimension .viz-table-value {
+    font-weight: 600; }
+
+.viz-datagrid th.viz-table-metric {
+  text-align: left; }
+
+.viz-datagrid td.viz-table-metric {
+  text-align: right; }
+
+.viz-datagrid .viz-datagrid-content {
+  left: 0;
+  right: 0;
+  top: 40px;
+  bottom: 40px;
+  position: absolute;
+  overflow-y: auto; }
+
+.viz-datagrid .viz-datagrid-footer {
+  position: absolute;
+  bottom: 0;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  background-color: #EFEFEF;
+  padding: 0px 10px;
+  height: 40px;
+  line-height: 40px;
+  width: 100%; }
+
+.viz-datagrid .viz-visualization {
+  top: 0; }
+
+.viz-list {
+  min-height: 300px; }
+  .viz-list.viz-container {
+    height: 300px;
+    padding: 0;
+    border: none; }
+  .viz-list .viz-visualization {
+    height: 300px !important; }
+  .viz-list .viz-wrapper {
+    position: relative;
+    height: 100%;
+    overflow: hidden; }
+  .viz-list .viz-list-left-arrow, .viz-list .viz-list-right-arrow {
+    position: absolute;
+    top: 0;
+    height: 300px;
+    line-height: 300px;
+    width: 50px;
+    background: white;
+    text-align: center; }
+  .viz-list .viz-list-left-arrow {
+    left: 0;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,ffffff+100&1+0,0+100 */
+    background: -moz-linear-gradient(left, white 0%, rgba(255, 255, 255, 0) 100%);
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, white 0%, rgba(255, 255, 255, 0) 100%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, white 0%, rgba(255, 255, 255, 0) 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=1 );
+    /* IE6-9 */ }
+    .viz-list .viz-list-left-arrow:before {
+      content: url("images/arrow-left3.svg"); }
+  .viz-list .viz-list-right-arrow {
+    right: 0;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,ffffff+100&0+0,1+100 */
+    background: -moz-linear-gradient(left, rgba(255, 255, 255, 0) 0%, white 100%);
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0%, white 100%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, white 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=1 );
+    /* IE6-9 */ }
+    .viz-list .viz-list-right-arrow:before {
+      content: url("images/arrow-right3.svg"); }
+  .viz-list .viz-list-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: auto;
+    white-space: nowrap;
+    -webkit-transition-property: left;
+    -moz-transition-property: left;
+    -o-transition-property: left;
+    transition-property: left;
+    -webkit-transition-timing-function: ease-in-out;
+    -moz-transition-timing-function: ease-in-out;
+    -o-transition-timing-function: ease-in-out;
+    transition-timing-function: ease-in-out; }
+  .viz-list .viz-list-item {
+    position: relative;
+    vertical-align: top;
+    display: inline-block;
+    width: 220px;
+    height: 100%;
+    white-space: nowrap;
+    padding: 12px;
+    margin-right: 12px;
+    border: 1px #EFEFEF solid;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px #EFEFEF; }
+    .viz-list .viz-list-item:last-child {
+      margin-right: 0; }
+  .viz-list .viz-list-dimension, .viz-list .viz-list-metric {
+    overflow: hidden; }
+  .viz-list .viz-loading-wrapper {
+    min-height: 300px; }
+  .viz-list .viz-visualization {
+    height: inherit;
+    position: relative;
+    top: 0; }
+
+.viz-pull-left {
+  float: left; }
+
+.viz-pull-right, .viz-datagrid .viz-datagrid-header .viz-datagrid-controls {
+  float: right; }
+
+.hidden {
+  display: none; }
+
+.viz-strong {
+  font-weight: 600; }
+
+.viz-clickable, .viz-container.viz-container-clickable {
+  cursor: pointer; }
+
+.viz-button {
+  display: inline-block;
+  text-align: center;
+  padding: 6px;
+  border-radius: 5px;
+  background: #ffa633;
+  color: #FFF;
+  border: 1px solid #ffa633;
+  white-space: nowrap;
+  cursor: pointer;
+  outline: none;
+  font-family: "Open Sans", sans-serif !important;
+  font-weight: normal !important; }
+  .viz-button:hover {
+    background: #ffa633; }
+
+.viz-button[disabled] {
+  cursor: default;
+  background-color: #EFEFEF;
+  border-color: #EFEFEF; }
+
+.viz-button.viz-button-white {
+  background: #FFF;
+  border: 1px solid #EFEFEF;
+  color: #6D7A87; }
+  .viz-button.viz-button-white:hover {
+    background: #FFF; }
+
+.viz-button.viz-button-dashed {
+  background: #FFF;
+  border: 1px dashed #EFEFEF;
+  color: #6D7A87; }
+  .viz-button.viz-button-dashed:hover {
+    background: #FFF; }
+
+.viz-button-group .viz-button {
+  font-size: 12px;
+  color: #6D7A87;
+  border: 1px solid #EFEFEF;
+  border-right-width: 0px;
+  background-color: #FFF;
+  border-radius: 0; }
+  .viz-button-group .viz-button:focus {
+    outline: 0; }
+  .viz-button-group .viz-button.viz-selected, .viz-button-group .viz-button:hover {
+    background-color: #EFEFEF; }
+  .viz-button-group .viz-button:first-of-type {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px; }
+  .viz-button-group .viz-button:last-of-type {
+    border-right-width: 1px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px; }
+
+.viz-form-control {
+  width: 100%;
+  vertical-align: middle;
+  height: 34px;
+  padding: 6px 12px;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s; }
+
+.viz-input {
+  display: block;
+  font-size: inherit;
+  font-family: inherit;
+  box-sizing: border-box;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s; }
+  .viz-input:focus {
+    border-color: #ffa633;
+    outline: none;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #ffa633; }
+
+.viz-datepicker-container {
+  float: right;
+  right: 0px;
+  z-index: 1500;
+  position: absolute;
+  background-color: #FFF;
+  border-radius: 5px;
+  float: right;
+  display: flex;
+  padding-top: 10px;
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.2); }
+  .viz-datepicker-container .viz-ranges {
+    padding: 0;
+    margin-top: 10px;
+    margin-right: 20px;
+    list-style: none;
+    min-width: 150px; }
+    .viz-datepicker-container .viz-ranges li {
+      color: #ffa633;
+      cursor: pointer;
+      font-size: 14px;
+      border: 1px solid #FFF;
+      border-radius: 5px;
+      padding: 3px 12px;
+      margin-bottom: 8px; }
+      .viz-datepicker-container .viz-ranges li:hover, .viz-datepicker-container .viz-ranges li.selected {
+        color: #fff;
+        border: 1px solid #ffa633;
+        background: #ffa633; }
+      .viz-datepicker-container .viz-ranges li.active {
+        color: #fff;
+        border: 1px solid #ffa633;
+        background: #ffa633; }
+
+.viz-datepicker-button {
+  height: 38px;
+  font-size: 14px;
+  padding: 5.5px 15px 5.5px 15px;
+  float: right;
+  max-width: 300px;
+  box-sizing: border-box; }
+  .viz-datepicker-button .date {
+    color: #6D7A87;
+    font-weight: 600; }
+  .viz-datepicker-button .viz-separator {
+    color: #999; }
+
+.viz-datepicker {
+  padding-bottom: 10px;
+  display: flex;
+  position: relative;
+  user-select: none; }
+  .viz-datepicker__PaginationArrow {
+    color: #6D7A87;
+    border: 0;
+    cursor: pointer;
+    display: block;
+    margin-top: 8px;
+    height: 35px;
+    outline: none;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    white-space: nowrap;
+    width: 35px;
+    z-index: 1; }
+    .viz-datepicker__PaginationArrow--previous {
+      left: 20px; }
+    .viz-datepicker__PaginationArrow--next {
+      right: 20px; }
+    .viz-datepicker__PaginationArrow:hover {
+      color: #ffa633; }
+  .viz-datepicker__PaginationArrowIcon {
+    font-family: 'viz-icons';
+    margin-top: 2px; }
+    .viz-datepicker__PaginationArrowIcon--is-disabled {
+      opacity: .25; }
+  .viz-datepicker__Month {
+    color: #6D7A87;
+    display: inline-block;
+    margin: 0 20px;
+    position: relative;
+    user-select: none;
+    width: 275px; }
+  .viz-datepicker__MonthHeader {
+    color: #6D7A87;
+    font-size: 16px;
+    height: 35px;
+    line-height: 35px;
+    position: relative;
+    text-align: center; }
+  .viz-datepicker__MonthHeaderLabel {
+    font-weight: 600;
+    display: inline-block;
+    position: relative; }
+  .viz-datepicker__MonthHeaderSelect {
+    background: #e4e4e4;
+    border: 0;
+    cursor: pointer;
+    display: inline-block;
+    height: 100%;
+    left: 0;
+    margin: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 5; }
+  .viz-datepicker__MonthDates {
+    margin: 0;
+    width: 100%;
+    border-spacing: 0px; }
+  .viz-datepicker__WeekdayHeading, .viz-datepicker__Date {
+    font-size: 16px;
+    line-height: 1.4;
+    padding: 10px 0;
+    text-align: center;
+    width: 14.285714285714286%; }
+  .viz-datepicker__WeekdayHeading abbr[title] {
+    border-bottom-width: 0;
+    color: #6D7A87;
+    cursor: pointer;
+    font-size: inherit;
+    text-decoration: none; }
+  .viz-datepicker__Date {
+    cursor: pointer;
+    overflow: hidden;
+    position: relative; }
+    .viz-datepicker__Date--otherMonth .viz-datepicker__CalendarSelection--segment {
+      background-color: #FFF; }
+    .viz-datepicker__Date--otherMonth .viz-datepicker__DateLabel {
+      color: #6D7A87; }
+    .viz-datepicker__Date--otherMonth--is-highlighted .viz-datepicker__CalendarSelection--segment,
+    .viz-datepicker__Date--otherMonth--is-highlighted .viz-datepicker__CalendarSelection,
+    .viz-datepicker__Date--otherMonth--is-highlighted .viz-datepicker__CalendarHighlight.viz-datepicker__CalendarHighlight--single {
+      background-color: #FFF; }
+    .viz-datepicker__Date--is-disabled {
+      color: #cdcdd1;
+      cursor: default; }
+    .viz-datepicker__Date--is-selected {
+      color: #fff; }
+    .viz-datepicker__Date--is-highlighted {
+      color: #fff; }
+  .viz-datepicker__CalendarDatePeriod {
+    bottom: 0;
+    position: absolute;
+    top: 0; }
+    .viz-datepicker__CalendarDatePeriod--am {
+      left: 0;
+      right: 50%; }
+    .viz-datepicker__CalendarDatePeriod--pm {
+      left: 50%;
+      right: 0; }
+  .viz-datepicker__CalendarSelection {
+    background-color: #ffa633;
+    bottom: 0px;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0px; }
+    .viz-datepicker__CalendarSelection--inOtherMonth {
+      opacity: .7; }
+    .viz-datepicker__CalendarSelection--start {
+      border-bottom-left-radius: 5px;
+      border-right-width: 0;
+      border-top-left-radius: 5px;
+      left: 0px; }
+    .viz-datepicker__CalendarSelection--end {
+      border-bottom-right-radius: 5px;
+      border-left-width: 0;
+      border-top-right-radius: 5px;
+      right: 0px; }
+    .viz-datepicker__CalendarSelection--segment {
+      background-color: #ffd399;
+      border-left-width: 0;
+      border-right-width: 0; }
+    .viz-datepicker__CalendarSelection--single {
+      border-radius: 5px;
+      left: 0px;
+      right: 0px; }
+    .viz-datepicker__CalendarSelection--is-pending {
+      border-width: 0; }
+  .viz-datepicker__CalendarHighlight {
+    background-color: rgba(255, 255, 255, 0.25);
+    bottom: 0px;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0px; }
+    .viz-datepicker__CalendarHighlight--inOtherMonth {
+      opacity: 0; }
+    .viz-datepicker__CalendarHighlight--start {
+      border-bottom-left-radius: 5px;
+      border-right-width: 0;
+      border-top-left-radius: 5px;
+      left: 0px; }
+    .viz-datepicker__CalendarHighlight--end {
+      border-bottom-right-radius: 5px;
+      border-left-width: 0;
+      border-top-right-radius: 5px;
+      right: 0px; }
+    .viz-datepicker__CalendarHighlight--segment {
+      border-left-width: 0;
+      border-right-width: 0; }
+    .viz-datepicker__CalendarHighlight--single {
+      background-color: #ffa633;
+      border-radius: 5px;
+      left: 0px;
+      right: 0px; }
+  .viz-datepicker__HalfDateStates {
+    bottom: -50px;
+    left: -50px;
+    position: absolute;
+    right: -50px;
+    top: -50px;
+    transform: rotate(30deg); }
+  .viz-datepicker__FullDateStates {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0; }
+  .viz-datepicker__DateLabel {
+    display: block;
+    position: relative;
+    text-align: center;
+    width: 100%;
+    z-index: 1; }
+
+@font-face {
+  font-family: 'viz-icons';
+  src: url("fonts/viz-icons.eot?6897393");
+  src: url("fonts/viz-icons.eot?6897393#iefix") format("embedded-opentype"), url("fonts/viz-icons.woff2?6897393") format("woff2"), url("fonts/viz-icons.woff?6897393") format("woff"), url("fonts/viz-icons.ttf?6897393") format("truetype"), url("fonts/viz-icons.svg?6897393#viz-icons") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+.viz-icon:before, .viz-icon:after, [class^="viz-icon-"]:before, [class*=" viz-icon-"]:before {
+  font-family: "viz-icons";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: .2em;
+  text-align: center;
+  /* opacity: .8; */
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+  /* Animation center compensation - margins should be symmetric */
+  /* remove if not needed */
+  margin-left: .2em;
+  /* you can be more comfortable with increased icons size */
+  /* font-size: 120%; */
+  /* Font smoothing. That was taken from TWBS */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Uncomment for 3D effect */
+  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */ }
+
+.viz-icon-cancel-circled2:before {
+  content: '\e800'; }
+
+/* '' */
+.viz-icon-cancel-circled:before {
+  content: '\e801'; }
+
+/* '' */
+.viz-icon-plus:before {
+  content: '\e802'; }
+
+/* '' */
+.viz-icon-down-open:before {
+  content: '\e803'; }
+
+/* '' */
+.viz-icon-left-open:before, .viz-datepicker__PaginationArrowIcon--previous:before {
+  content: '\e804'; }
+
+/* '' */
+.viz-icon-right-open:before, .viz-datepicker__PaginationArrowIcon--next:before {
+  content: '\e805'; }
+
+/* '' */
+.viz-icon-up-open:before {
+  content: '\e806'; }
+
+/* '' */
+.viz-view-container {
+  -webkit-font-smoothing: auto !important;
+  font-family: "Open Sans", sans-serif !important;
+  font-size: 14px !important; }
+  .viz-view-container .viz-view-message-container {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0; }
+    .viz-view-container .viz-view-message-container .viz-view-message {
+      font-size: 18px;
+      line-height: 18px;
+      color: #6D7A87;
+      text-align: center;
+      width: 100%;
+      position: absolute;
+      left: 0; }
+
+hr {
+  border-left: 0px;
+  border-right: 0px; }
+
+form {
+  margin-bottom: 0; }
+
+.viz-loading-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center; }
+
+.viz-loading {
+  position: relative;
+  width: 4em;
+  height: 4em;
+  border-radius: 100%;
+  border-style: solid;
+  border-width: 5px;
+  border-color: rgba(0, 0, 0, 0.08);
+  border-top-color: rgba(0, 0, 0, 0.2);
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  animation: spin 1.1s infinite linear; }
+
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg); }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    transform: rotate(360deg); } }
+
+.viz .viz-tooltip {
+  min-width: 175px;
+  font-family: "Open Sans", sans-serif; }
+  .viz .viz-tooltip .viz-metric-value, .viz .viz-tooltip .viz-dimension-value {
+    display: block;
+    padding: 0;
+    overflow: hidden;
+    text-align: center;
+    padding-left: 14px;
+    padding-right: 14px;
+    vertical-align: middle;
+    font-size: 13px; }
+  .viz .viz-tooltip .viz-tooltip-records {
+    list-style: none;
+    text-align: left;
+    margin: 0;
+    padding: 0;
+    font-size: 13px; }
+  .viz .viz-tooltip .viz-dimension-value {
+    background-color: #f6f6f6;
+    padding-top: 7px;
+    padding-bottom: 7px; }
+  .viz .viz-tooltip .viz-metric-value {
+    padding-top: 14px;
+    padding-bottom: 14px; }
+  .viz .viz-tooltip .viz-wrapper {
+    filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.1));
+    -webkit-filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.1));
+    display: block;
+    padding: 0;
+    background-color: #fff;
+    border: #efefef 1px solid;
+    border-radius: 5px;
+    color: #333;
+    z-index: 100; }
+  .viz .viz-tooltip .viz-color-0.viz-series-indicator {
+    background: #ffa633;
+    transition: opacity 0.25s linear;
+    opacity: 1; }
+    .viz .viz-tooltip .viz-color-0.viz-series-indicator.viz-active {
+      background: #ffa633;
+      opacity: 1; }
+  .viz .viz-tooltip .viz-color-1.viz-series-indicator {
+    background: #ffe333;
+    transition: opacity 0.25s linear;
+    opacity: 1; }
+    .viz .viz-tooltip .viz-color-1.viz-series-indicator.viz-active {
+      background: #ffe333;
+      opacity: 1; }
+  .viz .viz-tooltip .viz-color-2.viz-series-indicator {
+    background: #deff33;
+    transition: opacity 0.25s linear;
+    opacity: 1; }
+    .viz .viz-tooltip .viz-color-2.viz-series-indicator.viz-active {
+      background: #deff33;
+      opacity: 1; }
+  .viz .viz-tooltip .viz-color-3.viz-series-indicator {
+    background: #a0ff33;
+    transition: opacity 0.25s linear;
+    opacity: 1; }
+    .viz .viz-tooltip .viz-color-3.viz-series-indicator.viz-active {
+      background: #a0ff33;
+      opacity: 1; }
+  .viz .viz-tooltip .viz-color-4.viz-series-indicator {
+    background: #63ff33;
+    transition: opacity 0.25s linear;
+    opacity: 1; }
+    .viz .viz-tooltip .viz-color-4.viz-series-indicator.viz-active {
+      background: #63ff33;
+      opacity: 1; }
+  .viz .viz-tooltip .viz-color-5.viz-series-indicator {
+    background: #33ff40;
+    transition: opacity 0.25s linear;
+    opacity: 1; }
+    .viz .viz-tooltip .viz-color-5.viz-series-indicator.viz-active {
+      background: #33ff40;
+      opacity: 1; }
+  .viz .viz-tooltip .viz-color-6.viz-series-indicator {
+    background: #33ff7d;
+    transition: opacity 0.25s linear;
+    opacity: 1; }
+    .viz .viz-tooltip .viz-color-6.viz-series-indicator.viz-active {
+      background: #33ff7d;
+      opacity: 1; }
+  .viz .viz-tooltip .viz-color-7.viz-series-indicator {
+    background: #33ffba;
+    transition: opacity 0.25s linear;
+    opacity: 1; }
+    .viz .viz-tooltip .viz-color-7.viz-series-indicator.viz-active {
+      background: #33ffba;
+      opacity: 1; }
+  .viz .viz-tooltip .viz-color-8.viz-series-indicator {
+    background: #33fff8;
+    transition: opacity 0.25s linear;
+    opacity: 1; }
+    .viz .viz-tooltip .viz-color-8.viz-series-indicator.viz-active {
+      background: #33fff8;
+      opacity: 1; }
+  .viz .viz-tooltip .viz-color-9.viz-series-indicator {
+    background: #33c9ff;
+    transition: opacity 0.25s linear;
+    opacity: 1; }
+    .viz .viz-tooltip .viz-color-9.viz-series-indicator.viz-active {
+      background: #33c9ff;
+      opacity: 1; }
+  .viz .viz-tooltip .viz-color-10.viz-series-indicator {
+    background: #338cff;
+    transition: opacity 0.25s linear;
+    opacity: 1; }
+    .viz .viz-tooltip .viz-color-10.viz-series-indicator.viz-active {
+      background: #338cff;
+      opacity: 1; }
+  .viz .viz-tooltip .viz-color-11.viz-series-indicator {
+    background: #334fff;
+    transition: opacity 0.25s linear;
+    opacity: 1; }
+    .viz .viz-tooltip .viz-color-11.viz-series-indicator.viz-active {
+      background: #334fff;
+      opacity: 1; }
+  .viz .viz-tooltip.top {
+    margin-top: 7px; }
+  .viz .viz-tooltip.bottom {
+    margin-top: -7px; }
+  .viz .viz-tooltip.left {
+    margin-left: 7px; }
+  .viz .viz-tooltip.right {
+    margin-left: -7px; }
+
+.viz.viz-focused .viz-tooltip .viz-color-0.viz-series-indicator {
+  background: #ffa633;
+  transition: opacity 0.25s linear;
+  opacity: 0.22; }
+  .viz.viz-focused .viz-tooltip .viz-color-0.viz-series-indicator.viz-active {
+    background: #ffa633;
+    opacity: 1; }
+
+.viz.viz-focused .viz-tooltip .viz-color-1.viz-series-indicator {
+  background: #ffe333;
+  transition: opacity 0.25s linear;
+  opacity: 0.22; }
+  .viz.viz-focused .viz-tooltip .viz-color-1.viz-series-indicator.viz-active {
+    background: #ffe333;
+    opacity: 1; }
+
+.viz.viz-focused .viz-tooltip .viz-color-2.viz-series-indicator {
+  background: #deff33;
+  transition: opacity 0.25s linear;
+  opacity: 0.22; }
+  .viz.viz-focused .viz-tooltip .viz-color-2.viz-series-indicator.viz-active {
+    background: #deff33;
+    opacity: 1; }
+
+.viz.viz-focused .viz-tooltip .viz-color-3.viz-series-indicator {
+  background: #a0ff33;
+  transition: opacity 0.25s linear;
+  opacity: 0.22; }
+  .viz.viz-focused .viz-tooltip .viz-color-3.viz-series-indicator.viz-active {
+    background: #a0ff33;
+    opacity: 1; }
+
+.viz.viz-focused .viz-tooltip .viz-color-4.viz-series-indicator {
+  background: #63ff33;
+  transition: opacity 0.25s linear;
+  opacity: 0.22; }
+  .viz.viz-focused .viz-tooltip .viz-color-4.viz-series-indicator.viz-active {
+    background: #63ff33;
+    opacity: 1; }
+
+.viz.viz-focused .viz-tooltip .viz-color-5.viz-series-indicator {
+  background: #33ff40;
+  transition: opacity 0.25s linear;
+  opacity: 0.22; }
+  .viz.viz-focused .viz-tooltip .viz-color-5.viz-series-indicator.viz-active {
+    background: #33ff40;
+    opacity: 1; }
+
+.viz.viz-focused .viz-tooltip .viz-color-6.viz-series-indicator {
+  background: #33ff7d;
+  transition: opacity 0.25s linear;
+  opacity: 0.22; }
+  .viz.viz-focused .viz-tooltip .viz-color-6.viz-series-indicator.viz-active {
+    background: #33ff7d;
+    opacity: 1; }
+
+.viz.viz-focused .viz-tooltip .viz-color-7.viz-series-indicator {
+  background: #33ffba;
+  transition: opacity 0.25s linear;
+  opacity: 0.22; }
+  .viz.viz-focused .viz-tooltip .viz-color-7.viz-series-indicator.viz-active {
+    background: #33ffba;
+    opacity: 1; }
+
+.viz.viz-focused .viz-tooltip .viz-color-8.viz-series-indicator {
+  background: #33fff8;
+  transition: opacity 0.25s linear;
+  opacity: 0.22; }
+  .viz.viz-focused .viz-tooltip .viz-color-8.viz-series-indicator.viz-active {
+    background: #33fff8;
+    opacity: 1; }
+
+.viz.viz-focused .viz-tooltip .viz-color-9.viz-series-indicator {
+  background: #33c9ff;
+  transition: opacity 0.25s linear;
+  opacity: 0.22; }
+  .viz.viz-focused .viz-tooltip .viz-color-9.viz-series-indicator.viz-active {
+    background: #33c9ff;
+    opacity: 1; }
+
+.viz.viz-focused .viz-tooltip .viz-color-10.viz-series-indicator {
+  background: #338cff;
+  transition: opacity 0.25s linear;
+  opacity: 0.22; }
+  .viz.viz-focused .viz-tooltip .viz-color-10.viz-series-indicator.viz-active {
+    background: #338cff;
+    opacity: 1; }
+
+.viz.viz-focused .viz-tooltip .viz-color-11.viz-series-indicator {
+  background: #334fff;
+  transition: opacity 0.25s linear;
+  opacity: 0.22; }
+  .viz.viz-focused .viz-tooltip .viz-color-11.viz-series-indicator.viz-active {
+    background: #334fff;
+    opacity: 1; }
+
+.viz .viz-single-series {
+  text-align: center;
+  font-size: 24px; }
+
+.viz-bar .viz-bar-rect {
+  transition: all 0.25s linear;
+  fill: #ffa633;
+  fill-opacity: #ff9000;
+  stroke: #ffa633;
+  stroke-opacity: #ff9000; }
+  .viz-bar .viz-bar-rect:hover, .viz-bar .viz-bar-rect.viz-active {
+    fill: #ffa633;
+    fill-opacity: 1;
+    stroke: #ffa633;
+    stroke-opacity: 1; }
+
+.viz-bar .viz-color-0 .viz-bar-rect {
+  transition: all 0.25s linear;
+  fill: #ffa633;
+  fill-opacity: 1;
+  stroke: #ffa633;
+  stroke-opacity: 1; }
+  .viz-bar .viz-color-0 .viz-bar-rect:hover, .viz-bar .viz-color-0 .viz-bar-rect.viz-active {
+    fill: #ffa633;
+    fill-opacity: 1;
+    stroke: #ffa633;
+    stroke-opacity: 1; }
+
+.viz-bar .viz-color-1 .viz-bar-rect {
+  transition: all 0.25s linear;
+  fill: #ffe333;
+  fill-opacity: 1;
+  stroke: #ffe333;
+  stroke-opacity: 1; }
+  .viz-bar .viz-color-1 .viz-bar-rect:hover, .viz-bar .viz-color-1 .viz-bar-rect.viz-active {
+    fill: #ffe333;
+    fill-opacity: 1;
+    stroke: #ffe333;
+    stroke-opacity: 1; }
+
+.viz-bar .viz-color-2 .viz-bar-rect {
+  transition: all 0.25s linear;
+  fill: #deff33;
+  fill-opacity: 1;
+  stroke: #deff33;
+  stroke-opacity: 1; }
+  .viz-bar .viz-color-2 .viz-bar-rect:hover, .viz-bar .viz-color-2 .viz-bar-rect.viz-active {
+    fill: #deff33;
+    fill-opacity: 1;
+    stroke: #deff33;
+    stroke-opacity: 1; }
+
+.viz-bar .viz-color-3 .viz-bar-rect {
+  transition: all 0.25s linear;
+  fill: #a0ff33;
+  fill-opacity: 1;
+  stroke: #a0ff33;
+  stroke-opacity: 1; }
+  .viz-bar .viz-color-3 .viz-bar-rect:hover, .viz-bar .viz-color-3 .viz-bar-rect.viz-active {
+    fill: #a0ff33;
+    fill-opacity: 1;
+    stroke: #a0ff33;
+    stroke-opacity: 1; }
+
+.viz-bar .viz-color-4 .viz-bar-rect {
+  transition: all 0.25s linear;
+  fill: #63ff33;
+  fill-opacity: 1;
+  stroke: #63ff33;
+  stroke-opacity: 1; }
+  .viz-bar .viz-color-4 .viz-bar-rect:hover, .viz-bar .viz-color-4 .viz-bar-rect.viz-active {
+    fill: #63ff33;
+    fill-opacity: 1;
+    stroke: #63ff33;
+    stroke-opacity: 1; }
+
+.viz-bar .viz-color-5 .viz-bar-rect {
+  transition: all 0.25s linear;
+  fill: #33ff40;
+  fill-opacity: 1;
+  stroke: #33ff40;
+  stroke-opacity: 1; }
+  .viz-bar .viz-color-5 .viz-bar-rect:hover, .viz-bar .viz-color-5 .viz-bar-rect.viz-active {
+    fill: #33ff40;
+    fill-opacity: 1;
+    stroke: #33ff40;
+    stroke-opacity: 1; }
+
+.viz-bar .viz-color-6 .viz-bar-rect {
+  transition: all 0.25s linear;
+  fill: #33ff7d;
+  fill-opacity: 1;
+  stroke: #33ff7d;
+  stroke-opacity: 1; }
+  .viz-bar .viz-color-6 .viz-bar-rect:hover, .viz-bar .viz-color-6 .viz-bar-rect.viz-active {
+    fill: #33ff7d;
+    fill-opacity: 1;
+    stroke: #33ff7d;
+    stroke-opacity: 1; }
+
+.viz-bar .viz-color-7 .viz-bar-rect {
+  transition: all 0.25s linear;
+  fill: #33ffba;
+  fill-opacity: 1;
+  stroke: #33ffba;
+  stroke-opacity: 1; }
+  .viz-bar .viz-color-7 .viz-bar-rect:hover, .viz-bar .viz-color-7 .viz-bar-rect.viz-active {
+    fill: #33ffba;
+    fill-opacity: 1;
+    stroke: #33ffba;
+    stroke-opacity: 1; }
+
+.viz-bar .viz-color-8 .viz-bar-rect {
+  transition: all 0.25s linear;
+  fill: #33fff8;
+  fill-opacity: 1;
+  stroke: #33fff8;
+  stroke-opacity: 1; }
+  .viz-bar .viz-color-8 .viz-bar-rect:hover, .viz-bar .viz-color-8 .viz-bar-rect.viz-active {
+    fill: #33fff8;
+    fill-opacity: 1;
+    stroke: #33fff8;
+    stroke-opacity: 1; }
+
+.viz-bar .viz-color-9 .viz-bar-rect {
+  transition: all 0.25s linear;
+  fill: #33c9ff;
+  fill-opacity: 1;
+  stroke: #33c9ff;
+  stroke-opacity: 1; }
+  .viz-bar .viz-color-9 .viz-bar-rect:hover, .viz-bar .viz-color-9 .viz-bar-rect.viz-active {
+    fill: #33c9ff;
+    fill-opacity: 1;
+    stroke: #33c9ff;
+    stroke-opacity: 1; }
+
+.viz-bar .viz-color-10 .viz-bar-rect {
+  transition: all 0.25s linear;
+  fill: #338cff;
+  fill-opacity: 1;
+  stroke: #338cff;
+  stroke-opacity: 1; }
+  .viz-bar .viz-color-10 .viz-bar-rect:hover, .viz-bar .viz-color-10 .viz-bar-rect.viz-active {
+    fill: #338cff;
+    fill-opacity: 1;
+    stroke: #338cff;
+    stroke-opacity: 1; }
+
+.viz-bar .viz-color-11 .viz-bar-rect {
+  transition: all 0.25s linear;
+  fill: #334fff;
+  fill-opacity: 1;
+  stroke: #334fff;
+  stroke-opacity: 1; }
+  .viz-bar .viz-color-11 .viz-bar-rect:hover, .viz-bar .viz-color-11 .viz-bar-rect.viz-active {
+    fill: #334fff;
+    fill-opacity: 1;
+    stroke: #334fff;
+    stroke-opacity: 1; }
+
+.viz-bar.viz-focused .viz-bar-rect {
+  transition: all 0.25s linear;
+  fill: rgba(255, 166, 51, 0.22);
+  fill-opacity: #ffa633;
+  stroke: rgba(255, 166, 51, 0.22);
+  stroke-opacity: #ffa633; }
+  .viz-bar.viz-focused .viz-bar-rect:hover, .viz-bar.viz-focused .viz-bar-rect.viz-active {
+    fill: rgba(255, 166, 51, 0.22);
+    fill-opacity: 1;
+    stroke: rgba(255, 166, 51, 0.22);
+    stroke-opacity: 1; }
+
+.viz-bar.viz-focused .viz-color-0 .viz-bar-rect {
+  transition: all 0.25s linear;
+  fill: #ffa633;
+  fill-opacity: 0.22;
+  stroke: #ffa633;
+  stroke-opacity: 0.22; }
+  .viz-bar.viz-focused .viz-color-0 .viz-bar-rect:hover, .viz-bar.viz-focused .viz-color-0 .viz-bar-rect.viz-active {
+    fill: #ffa633;
+    fill-opacity: 1;
+    stroke: #ffa633;
+    stroke-opacity: 1; }
+
+.viz-bar.viz-focused .viz-color-1 .viz-bar-rect {
+  transition: all 0.25s linear;
+  fill: #ffe333;
+  fill-opacity: 0.22;
+  stroke: #ffe333;
+  stroke-opacity: 0.22; }
+  .viz-bar.viz-focused .viz-color-1 .viz-bar-rect:hover, .viz-bar.viz-focused .viz-color-1 .viz-bar-rect.viz-active {
+    fill: #ffe333;
+    fill-opacity: 1;
+    stroke: #ffe333;
+    stroke-opacity: 1; }
+
+.viz-bar.viz-focused .viz-color-2 .viz-bar-rect {
+  transition: all 0.25s linear;
+  fill: #deff33;
+  fill-opacity: 0.22;
+  stroke: #deff33;
+  stroke-opacity: 0.22; }
+  .viz-bar.viz-focused .viz-color-2 .viz-bar-rect:hover, .viz-bar.viz-focused .viz-color-2 .viz-bar-rect.viz-active {
+    fill: #deff33;
+    fill-opacity: 1;
+    stroke: #deff33;
+    stroke-opacity: 1; }
+
+.viz-bar.viz-focused .viz-color-3 .viz-bar-rect {
+  transition: all 0.25s linear;
+  fill: #a0ff33;
+  fill-opacity: 0.22;
+  stroke: #a0ff33;
+  stroke-opacity: 0.22; }
+  .viz-bar.viz-focused .viz-color-3 .viz-bar-rect:hover, .viz-bar.viz-focused .viz-color-3 .viz-bar-rect.viz-active {
+    fill: #a0ff33;
+    fill-opacity: 1;
+    stroke: #a0ff33;
+    stroke-opacity: 1; }
+
+.viz-bar.viz-focused .viz-color-4 .viz-bar-rect {
+  transition: all 0.25s linear;
+  fill: #63ff33;
+  fill-opacity: 0.22;
+  stroke: #63ff33;
+  stroke-opacity: 0.22; }
+  .viz-bar.viz-focused .viz-color-4 .viz-bar-rect:hover, .viz-bar.viz-focused .viz-color-4 .viz-bar-rect.viz-active {
+    fill: #63ff33;
+    fill-opacity: 1;
+    stroke: #63ff33;
+    stroke-opacity: 1; }
+
+.viz-bar.viz-focused .viz-color-5 .viz-bar-rect {
+  transition: all 0.25s linear;
+  fill: #33ff40;
+  fill-opacity: 0.22;
+  stroke: #33ff40;
+  stroke-opacity: 0.22; }
+  .viz-bar.viz-focused .viz-color-5 .viz-bar-rect:hover, .viz-bar.viz-focused .viz-color-5 .viz-bar-rect.viz-active {
+    fill: #33ff40;
+    fill-opacity: 1;
+    stroke: #33ff40;
+    stroke-opacity: 1; }
+
+.viz-bar.viz-focused .viz-color-6 .viz-bar-rect {
+  transition: all 0.25s linear;
+  fill: #33ff7d;
+  fill-opacity: 0.22;
+  stroke: #33ff7d;
+  stroke-opacity: 0.22; }
+  .viz-bar.viz-focused .viz-color-6 .viz-bar-rect:hover, .viz-bar.viz-focused .viz-color-6 .viz-bar-rect.viz-active {
+    fill: #33ff7d;
+    fill-opacity: 1;
+    stroke: #33ff7d;
+    stroke-opacity: 1; }
+
+.viz-bar.viz-focused .viz-color-7 .viz-bar-rect {
+  transition: all 0.25s linear;
+  fill: #33ffba;
+  fill-opacity: 0.22;
+  stroke: #33ffba;
+  stroke-opacity: 0.22; }
+  .viz-bar.viz-focused .viz-color-7 .viz-bar-rect:hover, .viz-bar.viz-focused .viz-color-7 .viz-bar-rect.viz-active {
+    fill: #33ffba;
+    fill-opacity: 1;
+    stroke: #33ffba;
+    stroke-opacity: 1; }
+
+.viz-bar.viz-focused .viz-color-8 .viz-bar-rect {
+  transition: all 0.25s linear;
+  fill: #33fff8;
+  fill-opacity: 0.22;
+  stroke: #33fff8;
+  stroke-opacity: 0.22; }
+  .viz-bar.viz-focused .viz-color-8 .viz-bar-rect:hover, .viz-bar.viz-focused .viz-color-8 .viz-bar-rect.viz-active {
+    fill: #33fff8;
+    fill-opacity: 1;
+    stroke: #33fff8;
+    stroke-opacity: 1; }
+
+.viz-bar.viz-focused .viz-color-9 .viz-bar-rect {
+  transition: all 0.25s linear;
+  fill: #33c9ff;
+  fill-opacity: 0.22;
+  stroke: #33c9ff;
+  stroke-opacity: 0.22; }
+  .viz-bar.viz-focused .viz-color-9 .viz-bar-rect:hover, .viz-bar.viz-focused .viz-color-9 .viz-bar-rect.viz-active {
+    fill: #33c9ff;
+    fill-opacity: 1;
+    stroke: #33c9ff;
+    stroke-opacity: 1; }
+
+.viz-bar.viz-focused .viz-color-10 .viz-bar-rect {
+  transition: all 0.25s linear;
+  fill: #338cff;
+  fill-opacity: 0.22;
+  stroke: #338cff;
+  stroke-opacity: 0.22; }
+  .viz-bar.viz-focused .viz-color-10 .viz-bar-rect:hover, .viz-bar.viz-focused .viz-color-10 .viz-bar-rect.viz-active {
+    fill: #338cff;
+    fill-opacity: 1;
+    stroke: #338cff;
+    stroke-opacity: 1; }
+
+.viz-bar.viz-focused .viz-color-11 .viz-bar-rect {
+  transition: all 0.25s linear;
+  fill: #334fff;
+  fill-opacity: 0.22;
+  stroke: #334fff;
+  stroke-opacity: 0.22; }
+  .viz-bar.viz-focused .viz-color-11 .viz-bar-rect:hover, .viz-bar.viz-focused .viz-color-11 .viz-bar-rect.viz-active {
+    fill: #334fff;
+    fill-opacity: 1;
+    stroke: #334fff;
+    stroke-opacity: 1; }
+
+.viz-bar .viz-axis.viz-axis-x g.tick text {
+  text-anchor: middle; }
+
+.viz-line.viz-line-path {
+  transition: stroke-opacity 0.25s linear;
+  stroke: #ffa633;
+  stroke-opacity: #ff9000; }
+  .viz-line.viz-line-path:hover, .viz-line.viz-line-path.viz-active {
+    stroke: #ffa633;
+    stroke-opacity: 1; }
+
+.viz-line .viz-scatter-point {
+  stroke: #ffa633;
+  stroke-opacity: #ff9000;
+  fill: #ffa633;
+  fill-opacity: #ff9000; }
+  .viz-line .viz-scatter-point.viz-active {
+    stroke: #ff9000;
+    stroke-opacity: 1; }
+  .viz-line .viz-scatter-point.viz-active, .viz-line .viz-scatter-point.viz-opened {
+    fill: #fff !important;
+    fill-opacity: 1; }
+
+.viz-line .viz-color-0.viz-line-path {
+  transition: stroke-opacity 0.25s linear;
+  stroke: #ffa633;
+  stroke-opacity: 1; }
+  .viz-line .viz-color-0.viz-line-path:hover, .viz-line .viz-color-0.viz-line-path.viz-active {
+    stroke: #ffa633;
+    stroke-opacity: 1; }
+
+.viz-line .viz-color-0 .viz-scatter-point {
+  stroke: #ffa633;
+  stroke-opacity: 1;
+  fill: #ffa633;
+  fill-opacity: 1; }
+  .viz-line .viz-color-0 .viz-scatter-point.viz-active {
+    stroke: #ff9000;
+    stroke-opacity: 1; }
+  .viz-line .viz-color-0 .viz-scatter-point.viz-active, .viz-line .viz-color-0 .viz-scatter-point.viz-opened {
+    fill: #fff !important;
+    fill-opacity: 1; }
+
+.viz-line .viz-color-1.viz-line-path {
+  transition: stroke-opacity 0.25s linear;
+  stroke: #ffe333;
+  stroke-opacity: 1; }
+  .viz-line .viz-color-1.viz-line-path:hover, .viz-line .viz-color-1.viz-line-path.viz-active {
+    stroke: #ffe333;
+    stroke-opacity: 1; }
+
+.viz-line .viz-color-1 .viz-scatter-point {
+  stroke: #ffe333;
+  stroke-opacity: 1;
+  fill: #ffe333;
+  fill-opacity: 1; }
+  .viz-line .viz-color-1 .viz-scatter-point.viz-active {
+    stroke: #ffdc00;
+    stroke-opacity: 1; }
+  .viz-line .viz-color-1 .viz-scatter-point.viz-active, .viz-line .viz-color-1 .viz-scatter-point.viz-opened {
+    fill: #fff !important;
+    fill-opacity: 1; }
+
+.viz-line .viz-color-2.viz-line-path {
+  transition: stroke-opacity 0.25s linear;
+  stroke: #deff33;
+  stroke-opacity: 1; }
+  .viz-line .viz-color-2.viz-line-path:hover, .viz-line .viz-color-2.viz-line-path.viz-active {
+    stroke: #deff33;
+    stroke-opacity: 1; }
+
+.viz-line .viz-color-2 .viz-scatter-point {
+  stroke: #deff33;
+  stroke-opacity: 1;
+  fill: #deff33;
+  fill-opacity: 1; }
+  .viz-line .viz-color-2 .viz-scatter-point.viz-active {
+    stroke: #d5ff00;
+    stroke-opacity: 1; }
+  .viz-line .viz-color-2 .viz-scatter-point.viz-active, .viz-line .viz-color-2 .viz-scatter-point.viz-opened {
+    fill: #fff !important;
+    fill-opacity: 1; }
+
+.viz-line .viz-color-3.viz-line-path {
+  transition: stroke-opacity 0.25s linear;
+  stroke: #a0ff33;
+  stroke-opacity: 1; }
+  .viz-line .viz-color-3.viz-line-path:hover, .viz-line .viz-color-3.viz-line-path.viz-active {
+    stroke: #a0ff33;
+    stroke-opacity: 1; }
+
+.viz-line .viz-color-3 .viz-scatter-point {
+  stroke: #a0ff33;
+  stroke-opacity: 1;
+  fill: #a0ff33;
+  fill-opacity: 1; }
+  .viz-line .viz-color-3 .viz-scatter-point.viz-active {
+    stroke: #89ff00;
+    stroke-opacity: 1; }
+  .viz-line .viz-color-3 .viz-scatter-point.viz-active, .viz-line .viz-color-3 .viz-scatter-point.viz-opened {
+    fill: #fff !important;
+    fill-opacity: 1; }
+
+.viz-line .viz-color-4.viz-line-path {
+  transition: stroke-opacity 0.25s linear;
+  stroke: #63ff33;
+  stroke-opacity: 1; }
+  .viz-line .viz-color-4.viz-line-path:hover, .viz-line .viz-color-4.viz-line-path.viz-active {
+    stroke: #63ff33;
+    stroke-opacity: 1; }
+
+.viz-line .viz-color-4 .viz-scatter-point {
+  stroke: #63ff33;
+  stroke-opacity: 1;
+  fill: #63ff33;
+  fill-opacity: 1; }
+  .viz-line .viz-color-4 .viz-scatter-point.viz-active {
+    stroke: #3cff00;
+    stroke-opacity: 1; }
+  .viz-line .viz-color-4 .viz-scatter-point.viz-active, .viz-line .viz-color-4 .viz-scatter-point.viz-opened {
+    fill: #fff !important;
+    fill-opacity: 1; }
+
+.viz-line .viz-color-5.viz-line-path {
+  transition: stroke-opacity 0.25s linear;
+  stroke: #33ff40;
+  stroke-opacity: 1; }
+  .viz-line .viz-color-5.viz-line-path:hover, .viz-line .viz-color-5.viz-line-path.viz-active {
+    stroke: #33ff40;
+    stroke-opacity: 1; }
+
+.viz-line .viz-color-5 .viz-scatter-point {
+  stroke: #33ff40;
+  stroke-opacity: 1;
+  fill: #33ff40;
+  fill-opacity: 1; }
+  .viz-line .viz-color-5 .viz-scatter-point.viz-active {
+    stroke: #00ff10;
+    stroke-opacity: 1; }
+  .viz-line .viz-color-5 .viz-scatter-point.viz-active, .viz-line .viz-color-5 .viz-scatter-point.viz-opened {
+    fill: #fff !important;
+    fill-opacity: 1; }
+
+.viz-line .viz-color-6.viz-line-path {
+  transition: stroke-opacity 0.25s linear;
+  stroke: #33ff7d;
+  stroke-opacity: 1; }
+  .viz-line .viz-color-6.viz-line-path:hover, .viz-line .viz-color-6.viz-line-path.viz-active {
+    stroke: #33ff7d;
+    stroke-opacity: 1; }
+
+.viz-line .viz-color-6 .viz-scatter-point {
+  stroke: #33ff7d;
+  stroke-opacity: 1;
+  fill: #33ff7d;
+  fill-opacity: 1; }
+  .viz-line .viz-color-6 .viz-scatter-point.viz-active {
+    stroke: #00ff5d;
+    stroke-opacity: 1; }
+  .viz-line .viz-color-6 .viz-scatter-point.viz-active, .viz-line .viz-color-6 .viz-scatter-point.viz-opened {
+    fill: #fff !important;
+    fill-opacity: 1; }
+
+.viz-line .viz-color-7.viz-line-path {
+  transition: stroke-opacity 0.25s linear;
+  stroke: #33ffba;
+  stroke-opacity: 1; }
+  .viz-line .viz-color-7.viz-line-path:hover, .viz-line .viz-color-7.viz-line-path.viz-active {
+    stroke: #33ffba;
+    stroke-opacity: 1; }
+
+.viz-line .viz-color-7 .viz-scatter-point {
+  stroke: #33ffba;
+  stroke-opacity: 1;
+  fill: #33ffba;
+  fill-opacity: 1; }
+  .viz-line .viz-color-7 .viz-scatter-point.viz-active {
+    stroke: #00ffa9;
+    stroke-opacity: 1; }
+  .viz-line .viz-color-7 .viz-scatter-point.viz-active, .viz-line .viz-color-7 .viz-scatter-point.viz-opened {
+    fill: #fff !important;
+    fill-opacity: 1; }
+
+.viz-line .viz-color-8.viz-line-path {
+  transition: stroke-opacity 0.25s linear;
+  stroke: #33fff8;
+  stroke-opacity: 1; }
+  .viz-line .viz-color-8.viz-line-path:hover, .viz-line .viz-color-8.viz-line-path.viz-active {
+    stroke: #33fff8;
+    stroke-opacity: 1; }
+
+.viz-line .viz-color-8 .viz-scatter-point {
+  stroke: #33fff8;
+  stroke-opacity: 1;
+  fill: #33fff8;
+  fill-opacity: 1; }
+  .viz-line .viz-color-8 .viz-scatter-point.viz-active {
+    stroke: #00fff6;
+    stroke-opacity: 1; }
+  .viz-line .viz-color-8 .viz-scatter-point.viz-active, .viz-line .viz-color-8 .viz-scatter-point.viz-opened {
+    fill: #fff !important;
+    fill-opacity: 1; }
+
+.viz-line .viz-color-9.viz-line-path {
+  transition: stroke-opacity 0.25s linear;
+  stroke: #33c9ff;
+  stroke-opacity: 1; }
+  .viz-line .viz-color-9.viz-line-path:hover, .viz-line .viz-color-9.viz-line-path.viz-active {
+    stroke: #33c9ff;
+    stroke-opacity: 1; }
+
+.viz-line .viz-color-9 .viz-scatter-point {
+  stroke: #33c9ff;
+  stroke-opacity: 1;
+  fill: #33c9ff;
+  fill-opacity: 1; }
+  .viz-line .viz-color-9 .viz-scatter-point.viz-active {
+    stroke: #00bcff;
+    stroke-opacity: 1; }
+  .viz-line .viz-color-9 .viz-scatter-point.viz-active, .viz-line .viz-color-9 .viz-scatter-point.viz-opened {
+    fill: #fff !important;
+    fill-opacity: 1; }
+
+.viz-line .viz-color-10.viz-line-path {
+  transition: stroke-opacity 0.25s linear;
+  stroke: #338cff;
+  stroke-opacity: 1; }
+  .viz-line .viz-color-10.viz-line-path:hover, .viz-line .viz-color-10.viz-line-path.viz-active {
+    stroke: #338cff;
+    stroke-opacity: 1; }
+
+.viz-line .viz-color-10 .viz-scatter-point {
+  stroke: #338cff;
+  stroke-opacity: 1;
+  fill: #338cff;
+  fill-opacity: 1; }
+  .viz-line .viz-color-10 .viz-scatter-point.viz-active {
+    stroke: #006fff;
+    stroke-opacity: 1; }
+  .viz-line .viz-color-10 .viz-scatter-point.viz-active, .viz-line .viz-color-10 .viz-scatter-point.viz-opened {
+    fill: #fff !important;
+    fill-opacity: 1; }
+
+.viz-line .viz-color-11.viz-line-path {
+  transition: stroke-opacity 0.25s linear;
+  stroke: #334fff;
+  stroke-opacity: 1; }
+  .viz-line .viz-color-11.viz-line-path:hover, .viz-line .viz-color-11.viz-line-path.viz-active {
+    stroke: #334fff;
+    stroke-opacity: 1; }
+
+.viz-line .viz-color-11 .viz-scatter-point {
+  stroke: #334fff;
+  stroke-opacity: 1;
+  fill: #334fff;
+  fill-opacity: 1; }
+  .viz-line .viz-color-11 .viz-scatter-point.viz-active {
+    stroke: #0023ff;
+    stroke-opacity: 1; }
+  .viz-line .viz-color-11 .viz-scatter-point.viz-active, .viz-line .viz-color-11 .viz-scatter-point.viz-opened {
+    fill: #fff !important;
+    fill-opacity: 1; }
+
+.viz-line.viz-focused .viz-color-0.viz-line-path {
+  transition: stroke-opacity 0.25s linear;
+  stroke: #ffa633;
+  stroke-opacity: 0.22; }
+  .viz-line.viz-focused .viz-color-0.viz-line-path:hover, .viz-line.viz-focused .viz-color-0.viz-line-path.viz-active {
+    stroke: #ffa633;
+    stroke-opacity: 1; }
+
+.viz-line.viz-focused .viz-color-0 .viz-scatter-point {
+  stroke: #ffa633;
+  stroke-opacity: 0.22;
+  fill: #ffa633;
+  fill-opacity: 0.22; }
+  .viz-line.viz-focused .viz-color-0 .viz-scatter-point.viz-active {
+    stroke: #ff9000;
+    stroke-opacity: 1; }
+  .viz-line.viz-focused .viz-color-0 .viz-scatter-point.viz-active, .viz-line.viz-focused .viz-color-0 .viz-scatter-point.viz-opened {
+    fill: #fff !important;
+    fill-opacity: 1; }
+
+.viz-line.viz-focused .viz-color-1.viz-line-path {
+  transition: stroke-opacity 0.25s linear;
+  stroke: #ffe333;
+  stroke-opacity: 0.22; }
+  .viz-line.viz-focused .viz-color-1.viz-line-path:hover, .viz-line.viz-focused .viz-color-1.viz-line-path.viz-active {
+    stroke: #ffe333;
+    stroke-opacity: 1; }
+
+.viz-line.viz-focused .viz-color-1 .viz-scatter-point {
+  stroke: #ffe333;
+  stroke-opacity: 0.22;
+  fill: #ffe333;
+  fill-opacity: 0.22; }
+  .viz-line.viz-focused .viz-color-1 .viz-scatter-point.viz-active {
+    stroke: #ffdc00;
+    stroke-opacity: 1; }
+  .viz-line.viz-focused .viz-color-1 .viz-scatter-point.viz-active, .viz-line.viz-focused .viz-color-1 .viz-scatter-point.viz-opened {
+    fill: #fff !important;
+    fill-opacity: 1; }
+
+.viz-line.viz-focused .viz-color-2.viz-line-path {
+  transition: stroke-opacity 0.25s linear;
+  stroke: #deff33;
+  stroke-opacity: 0.22; }
+  .viz-line.viz-focused .viz-color-2.viz-line-path:hover, .viz-line.viz-focused .viz-color-2.viz-line-path.viz-active {
+    stroke: #deff33;
+    stroke-opacity: 1; }
+
+.viz-line.viz-focused .viz-color-2 .viz-scatter-point {
+  stroke: #deff33;
+  stroke-opacity: 0.22;
+  fill: #deff33;
+  fill-opacity: 0.22; }
+  .viz-line.viz-focused .viz-color-2 .viz-scatter-point.viz-active {
+    stroke: #d5ff00;
+    stroke-opacity: 1; }
+  .viz-line.viz-focused .viz-color-2 .viz-scatter-point.viz-active, .viz-line.viz-focused .viz-color-2 .viz-scatter-point.viz-opened {
+    fill: #fff !important;
+    fill-opacity: 1; }
+
+.viz-line.viz-focused .viz-color-3.viz-line-path {
+  transition: stroke-opacity 0.25s linear;
+  stroke: #a0ff33;
+  stroke-opacity: 0.22; }
+  .viz-line.viz-focused .viz-color-3.viz-line-path:hover, .viz-line.viz-focused .viz-color-3.viz-line-path.viz-active {
+    stroke: #a0ff33;
+    stroke-opacity: 1; }
+
+.viz-line.viz-focused .viz-color-3 .viz-scatter-point {
+  stroke: #a0ff33;
+  stroke-opacity: 0.22;
+  fill: #a0ff33;
+  fill-opacity: 0.22; }
+  .viz-line.viz-focused .viz-color-3 .viz-scatter-point.viz-active {
+    stroke: #89ff00;
+    stroke-opacity: 1; }
+  .viz-line.viz-focused .viz-color-3 .viz-scatter-point.viz-active, .viz-line.viz-focused .viz-color-3 .viz-scatter-point.viz-opened {
+    fill: #fff !important;
+    fill-opacity: 1; }
+
+.viz-line.viz-focused .viz-color-4.viz-line-path {
+  transition: stroke-opacity 0.25s linear;
+  stroke: #63ff33;
+  stroke-opacity: 0.22; }
+  .viz-line.viz-focused .viz-color-4.viz-line-path:hover, .viz-line.viz-focused .viz-color-4.viz-line-path.viz-active {
+    stroke: #63ff33;
+    stroke-opacity: 1; }
+
+.viz-line.viz-focused .viz-color-4 .viz-scatter-point {
+  stroke: #63ff33;
+  stroke-opacity: 0.22;
+  fill: #63ff33;
+  fill-opacity: 0.22; }
+  .viz-line.viz-focused .viz-color-4 .viz-scatter-point.viz-active {
+    stroke: #3cff00;
+    stroke-opacity: 1; }
+  .viz-line.viz-focused .viz-color-4 .viz-scatter-point.viz-active, .viz-line.viz-focused .viz-color-4 .viz-scatter-point.viz-opened {
+    fill: #fff !important;
+    fill-opacity: 1; }
+
+.viz-line.viz-focused .viz-color-5.viz-line-path {
+  transition: stroke-opacity 0.25s linear;
+  stroke: #33ff40;
+  stroke-opacity: 0.22; }
+  .viz-line.viz-focused .viz-color-5.viz-line-path:hover, .viz-line.viz-focused .viz-color-5.viz-line-path.viz-active {
+    stroke: #33ff40;
+    stroke-opacity: 1; }
+
+.viz-line.viz-focused .viz-color-5 .viz-scatter-point {
+  stroke: #33ff40;
+  stroke-opacity: 0.22;
+  fill: #33ff40;
+  fill-opacity: 0.22; }
+  .viz-line.viz-focused .viz-color-5 .viz-scatter-point.viz-active {
+    stroke: #00ff10;
+    stroke-opacity: 1; }
+  .viz-line.viz-focused .viz-color-5 .viz-scatter-point.viz-active, .viz-line.viz-focused .viz-color-5 .viz-scatter-point.viz-opened {
+    fill: #fff !important;
+    fill-opacity: 1; }
+
+.viz-line.viz-focused .viz-color-6.viz-line-path {
+  transition: stroke-opacity 0.25s linear;
+  stroke: #33ff7d;
+  stroke-opacity: 0.22; }
+  .viz-line.viz-focused .viz-color-6.viz-line-path:hover, .viz-line.viz-focused .viz-color-6.viz-line-path.viz-active {
+    stroke: #33ff7d;
+    stroke-opacity: 1; }
+
+.viz-line.viz-focused .viz-color-6 .viz-scatter-point {
+  stroke: #33ff7d;
+  stroke-opacity: 0.22;
+  fill: #33ff7d;
+  fill-opacity: 0.22; }
+  .viz-line.viz-focused .viz-color-6 .viz-scatter-point.viz-active {
+    stroke: #00ff5d;
+    stroke-opacity: 1; }
+  .viz-line.viz-focused .viz-color-6 .viz-scatter-point.viz-active, .viz-line.viz-focused .viz-color-6 .viz-scatter-point.viz-opened {
+    fill: #fff !important;
+    fill-opacity: 1; }
+
+.viz-line.viz-focused .viz-color-7.viz-line-path {
+  transition: stroke-opacity 0.25s linear;
+  stroke: #33ffba;
+  stroke-opacity: 0.22; }
+  .viz-line.viz-focused .viz-color-7.viz-line-path:hover, .viz-line.viz-focused .viz-color-7.viz-line-path.viz-active {
+    stroke: #33ffba;
+    stroke-opacity: 1; }
+
+.viz-line.viz-focused .viz-color-7 .viz-scatter-point {
+  stroke: #33ffba;
+  stroke-opacity: 0.22;
+  fill: #33ffba;
+  fill-opacity: 0.22; }
+  .viz-line.viz-focused .viz-color-7 .viz-scatter-point.viz-active {
+    stroke: #00ffa9;
+    stroke-opacity: 1; }
+  .viz-line.viz-focused .viz-color-7 .viz-scatter-point.viz-active, .viz-line.viz-focused .viz-color-7 .viz-scatter-point.viz-opened {
+    fill: #fff !important;
+    fill-opacity: 1; }
+
+.viz-line.viz-focused .viz-color-8.viz-line-path {
+  transition: stroke-opacity 0.25s linear;
+  stroke: #33fff8;
+  stroke-opacity: 0.22; }
+  .viz-line.viz-focused .viz-color-8.viz-line-path:hover, .viz-line.viz-focused .viz-color-8.viz-line-path.viz-active {
+    stroke: #33fff8;
+    stroke-opacity: 1; }
+
+.viz-line.viz-focused .viz-color-8 .viz-scatter-point {
+  stroke: #33fff8;
+  stroke-opacity: 0.22;
+  fill: #33fff8;
+  fill-opacity: 0.22; }
+  .viz-line.viz-focused .viz-color-8 .viz-scatter-point.viz-active {
+    stroke: #00fff6;
+    stroke-opacity: 1; }
+  .viz-line.viz-focused .viz-color-8 .viz-scatter-point.viz-active, .viz-line.viz-focused .viz-color-8 .viz-scatter-point.viz-opened {
+    fill: #fff !important;
+    fill-opacity: 1; }
+
+.viz-line.viz-focused .viz-color-9.viz-line-path {
+  transition: stroke-opacity 0.25s linear;
+  stroke: #33c9ff;
+  stroke-opacity: 0.22; }
+  .viz-line.viz-focused .viz-color-9.viz-line-path:hover, .viz-line.viz-focused .viz-color-9.viz-line-path.viz-active {
+    stroke: #33c9ff;
+    stroke-opacity: 1; }
+
+.viz-line.viz-focused .viz-color-9 .viz-scatter-point {
+  stroke: #33c9ff;
+  stroke-opacity: 0.22;
+  fill: #33c9ff;
+  fill-opacity: 0.22; }
+  .viz-line.viz-focused .viz-color-9 .viz-scatter-point.viz-active {
+    stroke: #00bcff;
+    stroke-opacity: 1; }
+  .viz-line.viz-focused .viz-color-9 .viz-scatter-point.viz-active, .viz-line.viz-focused .viz-color-9 .viz-scatter-point.viz-opened {
+    fill: #fff !important;
+    fill-opacity: 1; }
+
+.viz-line.viz-focused .viz-color-10.viz-line-path {
+  transition: stroke-opacity 0.25s linear;
+  stroke: #338cff;
+  stroke-opacity: 0.22; }
+  .viz-line.viz-focused .viz-color-10.viz-line-path:hover, .viz-line.viz-focused .viz-color-10.viz-line-path.viz-active {
+    stroke: #338cff;
+    stroke-opacity: 1; }
+
+.viz-line.viz-focused .viz-color-10 .viz-scatter-point {
+  stroke: #338cff;
+  stroke-opacity: 0.22;
+  fill: #338cff;
+  fill-opacity: 0.22; }
+  .viz-line.viz-focused .viz-color-10 .viz-scatter-point.viz-active {
+    stroke: #006fff;
+    stroke-opacity: 1; }
+  .viz-line.viz-focused .viz-color-10 .viz-scatter-point.viz-active, .viz-line.viz-focused .viz-color-10 .viz-scatter-point.viz-opened {
+    fill: #fff !important;
+    fill-opacity: 1; }
+
+.viz-line.viz-focused .viz-color-11.viz-line-path {
+  transition: stroke-opacity 0.25s linear;
+  stroke: #334fff;
+  stroke-opacity: 0.22; }
+  .viz-line.viz-focused .viz-color-11.viz-line-path:hover, .viz-line.viz-focused .viz-color-11.viz-line-path.viz-active {
+    stroke: #334fff;
+    stroke-opacity: 1; }
+
+.viz-line.viz-focused .viz-color-11 .viz-scatter-point {
+  stroke: #334fff;
+  stroke-opacity: 0.22;
+  fill: #334fff;
+  fill-opacity: 0.22; }
+  .viz-line.viz-focused .viz-color-11 .viz-scatter-point.viz-active {
+    stroke: #0023ff;
+    stroke-opacity: 1; }
+  .viz-line.viz-focused .viz-color-11 .viz-scatter-point.viz-active, .viz-line.viz-focused .viz-color-11 .viz-scatter-point.viz-opened {
+    fill: #fff !important;
+    fill-opacity: 1; }
+
+.viz-line .viz-axis.viz-axis-x g.tick text {
+  text-anchor: middle; }
+
+.viz-area.viz-area-path {
+  transition: fill-color 0.25s linear, stroke-color 0.25s linear;
+  fill: #ffa633;
+  fill-opacity: #ff9000;
+  stroke: #ffa633;
+  stroke-opacity: #ff9000; }
+  .viz-area.viz-area-path:hover, .viz-area.viz-area-path.viz-active {
+    fill: #ffa633;
+    fill-opacity: 1;
+    stroke: #ffa633;
+    stroke-opacity: 1; }
+
+.viz-area .viz-scatter-point {
+  stroke: #ffa633;
+  stroke-opacity: #ff9000;
+  fill: #ffa633;
+  fill-opacity: #ff9000; }
+  .viz-area .viz-scatter-point.viz-active {
+    stroke: #ff9000;
+    stroke-opacity: 1; }
+  .viz-area .viz-scatter-point.viz-active, .viz-area .viz-scatter-point.viz-opened {
+    fill: #fff !important;
+    fill-opacity: 1; }
+
+.viz-area .viz-color-0.viz-line-path {
+  transition: stroke-opacity 0.25s linear;
+  stroke: #ffa633;
+  stroke-opacity: 1; }
+  .viz-area .viz-color-0.viz-line-path:hover, .viz-area .viz-color-0.viz-line-path.viz-active {
+    stroke: #ffa633;
+    stroke-opacity: 1; }
+
+.viz-area .viz-color-0.viz-area-path {
+  transition: fill-color 0.25s linear, stroke-color 0.25s linear;
+  fill: #ffa633;
+  fill-opacity: 1;
+  stroke: #ffa633;
+  stroke-opacity: 1; }
+  .viz-area .viz-color-0.viz-area-path:hover, .viz-area .viz-color-0.viz-area-path.viz-active {
+    fill: #ffa633;
+    fill-opacity: 1;
+    stroke: #ffa633;
+    stroke-opacity: 1; }
+
+.viz-area .viz-color-0 .viz-scatter-point {
+  stroke: #ffa633;
+  stroke-opacity: 1;
+  fill: #ffa633;
+  fill-opacity: 1; }
+  .viz-area .viz-color-0 .viz-scatter-point.viz-active {
+    stroke: #ff9000;
+    stroke-opacity: 1; }
+  .viz-area .viz-color-0 .viz-scatter-point.viz-active, .viz-area .viz-color-0 .viz-scatter-point.viz-opened {
+    fill: #fff !important;
+    fill-opacity: 1; }
+
+.viz-area .viz-color-1.viz-line-path {
+  transition: stroke-opacity 0.25s linear;
+  stroke: #ffe333;
+  stroke-opacity: 1; }
+  .viz-area .viz-color-1.viz-line-path:hover, .viz-area .viz-color-1.viz-line-path.viz-active {
+    stroke: #ffe333;
+    stroke-opacity: 1; }
+
+.viz-area .viz-color-1.viz-area-path {
+  transition: fill-color 0.25s linear, stroke-color 0.25s linear;
+  fill: #ffe333;
+  fill-opacity: 1;
+  stroke: #ffe333;
+  stroke-opacity: 1; }
+  .viz-area .viz-color-1.viz-area-path:hover, .viz-area .viz-color-1.viz-area-path.viz-active {
+    fill: #ffe333;
+    fill-opacity: 1;
+    stroke: #ffe333;
+    stroke-opacity: 1; }
+
+.viz-area .viz-color-1 .viz-scatter-point {
+  stroke: #ffe333;
+  stroke-opacity: 1;
+  fill: #ffe333;
+  fill-opacity: 1; }
+  .viz-area .viz-color-1 .viz-scatter-point.viz-active {
+    stroke: #ffdc00;
+    stroke-opacity: 1; }
+  .viz-area .viz-color-1 .viz-scatter-point.viz-active, .viz-area .viz-color-1 .viz-scatter-point.viz-opened {
+    fill: #fff !important;
+    fill-opacity: 1; }
+
+.viz-area .viz-color-2.viz-line-path {
+  transition: stroke-opacity 0.25s linear;
+  stroke: #deff33;
+  stroke-opacity: 1; }
+  .viz-area .viz-color-2.viz-line-path:hover, .viz-area .viz-color-2.viz-line-path.viz-active {
+    stroke: #deff33;
+    stroke-opacity: 1; }
+
+.viz-area .viz-color-2.viz-area-path {
+  transition: fill-color 0.25s linear, stroke-color 0.25s linear;
+  fill: #deff33;
+  fill-opacity: 1;
+  stroke: #deff33;
+  stroke-opacity: 1; }
+  .viz-area .viz-color-2.viz-area-path:hover, .viz-area .viz-color-2.viz-area-path.viz-active {
+    fill: #deff33;
+    fill-opacity: 1;
+    stroke: #deff33;
+    stroke-opacity: 1; }
+
+.viz-area .viz-color-2 .viz-scatter-point {
+  stroke: #deff33;
+  stroke-opacity: 1;
+  fill: #deff33;
+  fill-opacity: 1; }
+  .viz-area .viz-color-2 .viz-scatter-point.viz-active {
+    stroke: #d5ff00;
+    stroke-opacity: 1; }
+  .viz-area .viz-color-2 .viz-scatter-point.viz-active, .viz-area .viz-color-2 .viz-scatter-point.viz-opened {
+    fill: #fff !important;
+    fill-opacity: 1; }
+
+.viz-area .viz-color-3.viz-line-path {
+  transition: stroke-opacity 0.25s linear;
+  stroke: #a0ff33;
+  stroke-opacity: 1; }
+  .viz-area .viz-color-3.viz-line-path:hover, .viz-area .viz-color-3.viz-line-path.viz-active {
+    stroke: #a0ff33;
+    stroke-opacity: 1; }
+
+.viz-area .viz-color-3.viz-area-path {
+  transition: fill-color 0.25s linear, stroke-color 0.25s linear;
+  fill: #a0ff33;
+  fill-opacity: 1;
+  stroke: #a0ff33;
+  stroke-opacity: 1; }
+  .viz-area .viz-color-3.viz-area-path:hover, .viz-area .viz-color-3.viz-area-path.viz-active {
+    fill: #a0ff33;
+    fill-opacity: 1;
+    stroke: #a0ff33;
+    stroke-opacity: 1; }
+
+.viz-area .viz-color-3 .viz-scatter-point {
+  stroke: #a0ff33;
+  stroke-opacity: 1;
+  fill: #a0ff33;
+  fill-opacity: 1; }
+  .viz-area .viz-color-3 .viz-scatter-point.viz-active {
+    stroke: #89ff00;
+    stroke-opacity: 1; }
+  .viz-area .viz-color-3 .viz-scatter-point.viz-active, .viz-area .viz-color-3 .viz-scatter-point.viz-opened {
+    fill: #fff !important;
+    fill-opacity: 1; }
+
+.viz-area .viz-color-4.viz-line-path {
+  transition: stroke-opacity 0.25s linear;
+  stroke: #63ff33;
+  stroke-opacity: 1; }
+  .viz-area .viz-color-4.viz-line-path:hover, .viz-area .viz-color-4.viz-line-path.viz-active {
+    stroke: #63ff33;
+    stroke-opacity: 1; }
+
+.viz-area .viz-color-4.viz-area-path {
+  transition: fill-color 0.25s linear, stroke-color 0.25s linear;
+  fill: #63ff33;
+  fill-opacity: 1;
+  stroke: #63ff33;
+  stroke-opacity: 1; }
+  .viz-area .viz-color-4.viz-area-path:hover, .viz-area .viz-color-4.viz-area-path.viz-active {
+    fill: #63ff33;
+    fill-opacity: 1;
+    stroke: #63ff33;
+    stroke-opacity: 1; }
+
+.viz-area .viz-color-4 .viz-scatter-point {
+  stroke: #63ff33;
+  stroke-opacity: 1;
+  fill: #63ff33;
+  fill-opacity: 1; }
+  .viz-area .viz-color-4 .viz-scatter-point.viz-active {
+    stroke: #3cff00;
+    stroke-opacity: 1; }
+  .viz-area .viz-color-4 .viz-scatter-point.viz-active, .viz-area .viz-color-4 .viz-scatter-point.viz-opened {
+    fill: #fff !important;
+    fill-opacity: 1; }
+
+.viz-area .viz-color-5.viz-line-path {
+  transition: stroke-opacity 0.25s linear;
+  stroke: #33ff40;
+  stroke-opacity: 1; }
+  .viz-area .viz-color-5.viz-line-path:hover, .viz-area .viz-color-5.viz-line-path.viz-active {
+    stroke: #33ff40;
+    stroke-opacity: 1; }
+
+.viz-area .viz-color-5.viz-area-path {
+  transition: fill-color 0.25s linear, stroke-color 0.25s linear;
+  fill: #33ff40;
+  fill-opacity: 1;
+  stroke: #33ff40;
+  stroke-opacity: 1; }
+  .viz-area .viz-color-5.viz-area-path:hover, .viz-area .viz-color-5.viz-area-path.viz-active {
+    fill: #33ff40;
+    fill-opacity: 1;
+    stroke: #33ff40;
+    stroke-opacity: 1; }
+
+.viz-area .viz-color-5 .viz-scatter-point {
+  stroke: #33ff40;
+  stroke-opacity: 1;
+  fill: #33ff40;
+  fill-opacity: 1; }
+  .viz-area .viz-color-5 .viz-scatter-point.viz-active {
+    stroke: #00ff10;
+    stroke-opacity: 1; }
+  .viz-area .viz-color-5 .viz-scatter-point.viz-active, .viz-area .viz-color-5 .viz-scatter-point.viz-opened {
+    fill: #fff !important;
+    fill-opacity: 1; }
+
+.viz-area .viz-color-6.viz-line-path {
+  transition: stroke-opacity 0.25s linear;
+  stroke: #33ff7d;
+  stroke-opacity: 1; }
+  .viz-area .viz-color-6.viz-line-path:hover, .viz-area .viz-color-6.viz-line-path.viz-active {
+    stroke: #33ff7d;
+    stroke-opacity: 1; }
+
+.viz-area .viz-color-6.viz-area-path {
+  transition: fill-color 0.25s linear, stroke-color 0.25s linear;
+  fill: #33ff7d;
+  fill-opacity: 1;
+  stroke: #33ff7d;
+  stroke-opacity: 1; }
+  .viz-area .viz-color-6.viz-area-path:hover, .viz-area .viz-color-6.viz-area-path.viz-active {
+    fill: #33ff7d;
+    fill-opacity: 1;
+    stroke: #33ff7d;
+    stroke-opacity: 1; }
+
+.viz-area .viz-color-6 .viz-scatter-point {
+  stroke: #33ff7d;
+  stroke-opacity: 1;
+  fill: #33ff7d;
+  fill-opacity: 1; }
+  .viz-area .viz-color-6 .viz-scatter-point.viz-active {
+    stroke: #00ff5d;
+    stroke-opacity: 1; }
+  .viz-area .viz-color-6 .viz-scatter-point.viz-active, .viz-area .viz-color-6 .viz-scatter-point.viz-opened {
+    fill: #fff !important;
+    fill-opacity: 1; }
+
+.viz-area .viz-color-7.viz-line-path {
+  transition: stroke-opacity 0.25s linear;
+  stroke: #33ffba;
+  stroke-opacity: 1; }
+  .viz-area .viz-color-7.viz-line-path:hover, .viz-area .viz-color-7.viz-line-path.viz-active {
+    stroke: #33ffba;
+    stroke-opacity: 1; }
+
+.viz-area .viz-color-7.viz-area-path {
+  transition: fill-color 0.25s linear, stroke-color 0.25s linear;
+  fill: #33ffba;
+  fill-opacity: 1;
+  stroke: #33ffba;
+  stroke-opacity: 1; }
+  .viz-area .viz-color-7.viz-area-path:hover, .viz-area .viz-color-7.viz-area-path.viz-active {
+    fill: #33ffba;
+    fill-opacity: 1;
+    stroke: #33ffba;
+    stroke-opacity: 1; }
+
+.viz-area .viz-color-7 .viz-scatter-point {
+  stroke: #33ffba;
+  stroke-opacity: 1;
+  fill: #33ffba;
+  fill-opacity: 1; }
+  .viz-area .viz-color-7 .viz-scatter-point.viz-active {
+    stroke: #00ffa9;
+    stroke-opacity: 1; }
+  .viz-area .viz-color-7 .viz-scatter-point.viz-active, .viz-area .viz-color-7 .viz-scatter-point.viz-opened {
+    fill: #fff !important;
+    fill-opacity: 1; }
+
+.viz-area .viz-color-8.viz-line-path {
+  transition: stroke-opacity 0.25s linear;
+  stroke: #33fff8;
+  stroke-opacity: 1; }
+  .viz-area .viz-color-8.viz-line-path:hover, .viz-area .viz-color-8.viz-line-path.viz-active {
+    stroke: #33fff8;
+    stroke-opacity: 1; }
+
+.viz-area .viz-color-8.viz-area-path {
+  transition: fill-color 0.25s linear, stroke-color 0.25s linear;
+  fill: #33fff8;
+  fill-opacity: 1;
+  stroke: #33fff8;
+  stroke-opacity: 1; }
+  .viz-area .viz-color-8.viz-area-path:hover, .viz-area .viz-color-8.viz-area-path.viz-active {
+    fill: #33fff8;
+    fill-opacity: 1;
+    stroke: #33fff8;
+    stroke-opacity: 1; }
+
+.viz-area .viz-color-8 .viz-scatter-point {
+  stroke: #33fff8;
+  stroke-opacity: 1;
+  fill: #33fff8;
+  fill-opacity: 1; }
+  .viz-area .viz-color-8 .viz-scatter-point.viz-active {
+    stroke: #00fff6;
+    stroke-opacity: 1; }
+  .viz-area .viz-color-8 .viz-scatter-point.viz-active, .viz-area .viz-color-8 .viz-scatter-point.viz-opened {
+    fill: #fff !important;
+    fill-opacity: 1; }
+
+.viz-area .viz-color-9.viz-line-path {
+  transition: stroke-opacity 0.25s linear;
+  stroke: #33c9ff;
+  stroke-opacity: 1; }
+  .viz-area .viz-color-9.viz-line-path:hover, .viz-area .viz-color-9.viz-line-path.viz-active {
+    stroke: #33c9ff;
+    stroke-opacity: 1; }
+
+.viz-area .viz-color-9.viz-area-path {
+  transition: fill-color 0.25s linear, stroke-color 0.25s linear;
+  fill: #33c9ff;
+  fill-opacity: 1;
+  stroke: #33c9ff;
+  stroke-opacity: 1; }
+  .viz-area .viz-color-9.viz-area-path:hover, .viz-area .viz-color-9.viz-area-path.viz-active {
+    fill: #33c9ff;
+    fill-opacity: 1;
+    stroke: #33c9ff;
+    stroke-opacity: 1; }
+
+.viz-area .viz-color-9 .viz-scatter-point {
+  stroke: #33c9ff;
+  stroke-opacity: 1;
+  fill: #33c9ff;
+  fill-opacity: 1; }
+  .viz-area .viz-color-9 .viz-scatter-point.viz-active {
+    stroke: #00bcff;
+    stroke-opacity: 1; }
+  .viz-area .viz-color-9 .viz-scatter-point.viz-active, .viz-area .viz-color-9 .viz-scatter-point.viz-opened {
+    fill: #fff !important;
+    fill-opacity: 1; }
+
+.viz-area .viz-color-10.viz-line-path {
+  transition: stroke-opacity 0.25s linear;
+  stroke: #338cff;
+  stroke-opacity: 1; }
+  .viz-area .viz-color-10.viz-line-path:hover, .viz-area .viz-color-10.viz-line-path.viz-active {
+    stroke: #338cff;
+    stroke-opacity: 1; }
+
+.viz-area .viz-color-10.viz-area-path {
+  transition: fill-color 0.25s linear, stroke-color 0.25s linear;
+  fill: #338cff;
+  fill-opacity: 1;
+  stroke: #338cff;
+  stroke-opacity: 1; }
+  .viz-area .viz-color-10.viz-area-path:hover, .viz-area .viz-color-10.viz-area-path.viz-active {
+    fill: #338cff;
+    fill-opacity: 1;
+    stroke: #338cff;
+    stroke-opacity: 1; }
+
+.viz-area .viz-color-10 .viz-scatter-point {
+  stroke: #338cff;
+  stroke-opacity: 1;
+  fill: #338cff;
+  fill-opacity: 1; }
+  .viz-area .viz-color-10 .viz-scatter-point.viz-active {
+    stroke: #006fff;
+    stroke-opacity: 1; }
+  .viz-area .viz-color-10 .viz-scatter-point.viz-active, .viz-area .viz-color-10 .viz-scatter-point.viz-opened {
+    fill: #fff !important;
+    fill-opacity: 1; }
+
+.viz-area .viz-color-11.viz-line-path {
+  transition: stroke-opacity 0.25s linear;
+  stroke: #334fff;
+  stroke-opacity: 1; }
+  .viz-area .viz-color-11.viz-line-path:hover, .viz-area .viz-color-11.viz-line-path.viz-active {
+    stroke: #334fff;
+    stroke-opacity: 1; }
+
+.viz-area .viz-color-11.viz-area-path {
+  transition: fill-color 0.25s linear, stroke-color 0.25s linear;
+  fill: #334fff;
+  fill-opacity: 1;
+  stroke: #334fff;
+  stroke-opacity: 1; }
+  .viz-area .viz-color-11.viz-area-path:hover, .viz-area .viz-color-11.viz-area-path.viz-active {
+    fill: #334fff;
+    fill-opacity: 1;
+    stroke: #334fff;
+    stroke-opacity: 1; }
+
+.viz-area .viz-color-11 .viz-scatter-point {
+  stroke: #334fff;
+  stroke-opacity: 1;
+  fill: #334fff;
+  fill-opacity: 1; }
+  .viz-area .viz-color-11 .viz-scatter-point.viz-active {
+    stroke: #0023ff;
+    stroke-opacity: 1; }
+  .viz-area .viz-color-11 .viz-scatter-point.viz-active, .viz-area .viz-color-11 .viz-scatter-point.viz-opened {
+    fill: #fff !important;
+    fill-opacity: 1; }
+
+.viz-area.viz-focused.viz-area-path {
+  transition: fill-color 0.25s linear, stroke-color 0.25s linear;
+  fill: rgba(255, 166, 51, 0.7);
+  fill-opacity: #ffa633;
+  stroke: rgba(255, 166, 51, 0.7);
+  stroke-opacity: #ffa633; }
+  .viz-area.viz-focused.viz-area-path:hover, .viz-area.viz-focused.viz-area-path.viz-active {
+    fill: rgba(255, 166, 51, 0.7);
+    fill-opacity: 1;
+    stroke: rgba(255, 166, 51, 0.7);
+    stroke-opacity: 1; }
+
+.viz-area.viz-focused .viz-scatter-point {
+  stroke: rgba(255, 166, 51, 0.7);
+  stroke-opacity: #ffa633;
+  fill: rgba(255, 166, 51, 0.7);
+  fill-opacity: #ffa633; }
+  .viz-area.viz-focused .viz-scatter-point.viz-active {
+    stroke: rgba(255, 144, 0, 0.7);
+    stroke-opacity: 1; }
+  .viz-area.viz-focused .viz-scatter-point.viz-active, .viz-area.viz-focused .viz-scatter-point.viz-opened {
+    fill: #fff !important;
+    fill-opacity: 1; }
+
+.viz-area.viz-focused .viz-color-0.viz-area-path {
+  transition: fill-color 0.25s linear, stroke-color 0.25s linear;
+  fill: #ffa633;
+  fill-opacity: 0.22;
+  stroke: #ffa633;
+  stroke-opacity: 0.22; }
+  .viz-area.viz-focused .viz-color-0.viz-area-path:hover, .viz-area.viz-focused .viz-color-0.viz-area-path.viz-active {
+    fill: #ffa633;
+    fill-opacity: 1;
+    stroke: #ffa633;
+    stroke-opacity: 1; }
+
+.viz-area.viz-focused .viz-color-0 .viz-scatter-point {
+  stroke: #ffa633;
+  stroke-opacity: 0.22;
+  fill: #ffa633;
+  fill-opacity: 0.22; }
+  .viz-area.viz-focused .viz-color-0 .viz-scatter-point.viz-active {
+    stroke: #ff9000;
+    stroke-opacity: 1; }
+  .viz-area.viz-focused .viz-color-0 .viz-scatter-point.viz-active, .viz-area.viz-focused .viz-color-0 .viz-scatter-point.viz-opened {
+    fill: #fff !important;
+    fill-opacity: 1; }
+
+.viz-area.viz-focused .viz-color-1.viz-area-path {
+  transition: fill-color 0.25s linear, stroke-color 0.25s linear;
+  fill: #ffe333;
+  fill-opacity: 0.22;
+  stroke: #ffe333;
+  stroke-opacity: 0.22; }
+  .viz-area.viz-focused .viz-color-1.viz-area-path:hover, .viz-area.viz-focused .viz-color-1.viz-area-path.viz-active {
+    fill: #ffe333;
+    fill-opacity: 1;
+    stroke: #ffe333;
+    stroke-opacity: 1; }
+
+.viz-area.viz-focused .viz-color-1 .viz-scatter-point {
+  stroke: #ffe333;
+  stroke-opacity: 0.22;
+  fill: #ffe333;
+  fill-opacity: 0.22; }
+  .viz-area.viz-focused .viz-color-1 .viz-scatter-point.viz-active {
+    stroke: #ffdc00;
+    stroke-opacity: 1; }
+  .viz-area.viz-focused .viz-color-1 .viz-scatter-point.viz-active, .viz-area.viz-focused .viz-color-1 .viz-scatter-point.viz-opened {
+    fill: #fff !important;
+    fill-opacity: 1; }
+
+.viz-area.viz-focused .viz-color-2.viz-area-path {
+  transition: fill-color 0.25s linear, stroke-color 0.25s linear;
+  fill: #deff33;
+  fill-opacity: 0.22;
+  stroke: #deff33;
+  stroke-opacity: 0.22; }
+  .viz-area.viz-focused .viz-color-2.viz-area-path:hover, .viz-area.viz-focused .viz-color-2.viz-area-path.viz-active {
+    fill: #deff33;
+    fill-opacity: 1;
+    stroke: #deff33;
+    stroke-opacity: 1; }
+
+.viz-area.viz-focused .viz-color-2 .viz-scatter-point {
+  stroke: #deff33;
+  stroke-opacity: 0.22;
+  fill: #deff33;
+  fill-opacity: 0.22; }
+  .viz-area.viz-focused .viz-color-2 .viz-scatter-point.viz-active {
+    stroke: #d5ff00;
+    stroke-opacity: 1; }
+  .viz-area.viz-focused .viz-color-2 .viz-scatter-point.viz-active, .viz-area.viz-focused .viz-color-2 .viz-scatter-point.viz-opened {
+    fill: #fff !important;
+    fill-opacity: 1; }
+
+.viz-area.viz-focused .viz-color-3.viz-area-path {
+  transition: fill-color 0.25s linear, stroke-color 0.25s linear;
+  fill: #a0ff33;
+  fill-opacity: 0.22;
+  stroke: #a0ff33;
+  stroke-opacity: 0.22; }
+  .viz-area.viz-focused .viz-color-3.viz-area-path:hover, .viz-area.viz-focused .viz-color-3.viz-area-path.viz-active {
+    fill: #a0ff33;
+    fill-opacity: 1;
+    stroke: #a0ff33;
+    stroke-opacity: 1; }
+
+.viz-area.viz-focused .viz-color-3 .viz-scatter-point {
+  stroke: #a0ff33;
+  stroke-opacity: 0.22;
+  fill: #a0ff33;
+  fill-opacity: 0.22; }
+  .viz-area.viz-focused .viz-color-3 .viz-scatter-point.viz-active {
+    stroke: #89ff00;
+    stroke-opacity: 1; }
+  .viz-area.viz-focused .viz-color-3 .viz-scatter-point.viz-active, .viz-area.viz-focused .viz-color-3 .viz-scatter-point.viz-opened {
+    fill: #fff !important;
+    fill-opacity: 1; }
+
+.viz-area.viz-focused .viz-color-4.viz-area-path {
+  transition: fill-color 0.25s linear, stroke-color 0.25s linear;
+  fill: #63ff33;
+  fill-opacity: 0.22;
+  stroke: #63ff33;
+  stroke-opacity: 0.22; }
+  .viz-area.viz-focused .viz-color-4.viz-area-path:hover, .viz-area.viz-focused .viz-color-4.viz-area-path.viz-active {
+    fill: #63ff33;
+    fill-opacity: 1;
+    stroke: #63ff33;
+    stroke-opacity: 1; }
+
+.viz-area.viz-focused .viz-color-4 .viz-scatter-point {
+  stroke: #63ff33;
+  stroke-opacity: 0.22;
+  fill: #63ff33;
+  fill-opacity: 0.22; }
+  .viz-area.viz-focused .viz-color-4 .viz-scatter-point.viz-active {
+    stroke: #3cff00;
+    stroke-opacity: 1; }
+  .viz-area.viz-focused .viz-color-4 .viz-scatter-point.viz-active, .viz-area.viz-focused .viz-color-4 .viz-scatter-point.viz-opened {
+    fill: #fff !important;
+    fill-opacity: 1; }
+
+.viz-area.viz-focused .viz-color-5.viz-area-path {
+  transition: fill-color 0.25s linear, stroke-color 0.25s linear;
+  fill: #33ff40;
+  fill-opacity: 0.22;
+  stroke: #33ff40;
+  stroke-opacity: 0.22; }
+  .viz-area.viz-focused .viz-color-5.viz-area-path:hover, .viz-area.viz-focused .viz-color-5.viz-area-path.viz-active {
+    fill: #33ff40;
+    fill-opacity: 1;
+    stroke: #33ff40;
+    stroke-opacity: 1; }
+
+.viz-area.viz-focused .viz-color-5 .viz-scatter-point {
+  stroke: #33ff40;
+  stroke-opacity: 0.22;
+  fill: #33ff40;
+  fill-opacity: 0.22; }
+  .viz-area.viz-focused .viz-color-5 .viz-scatter-point.viz-active {
+    stroke: #00ff10;
+    stroke-opacity: 1; }
+  .viz-area.viz-focused .viz-color-5 .viz-scatter-point.viz-active, .viz-area.viz-focused .viz-color-5 .viz-scatter-point.viz-opened {
+    fill: #fff !important;
+    fill-opacity: 1; }
+
+.viz-area.viz-focused .viz-color-6.viz-area-path {
+  transition: fill-color 0.25s linear, stroke-color 0.25s linear;
+  fill: #33ff7d;
+  fill-opacity: 0.22;
+  stroke: #33ff7d;
+  stroke-opacity: 0.22; }
+  .viz-area.viz-focused .viz-color-6.viz-area-path:hover, .viz-area.viz-focused .viz-color-6.viz-area-path.viz-active {
+    fill: #33ff7d;
+    fill-opacity: 1;
+    stroke: #33ff7d;
+    stroke-opacity: 1; }
+
+.viz-area.viz-focused .viz-color-6 .viz-scatter-point {
+  stroke: #33ff7d;
+  stroke-opacity: 0.22;
+  fill: #33ff7d;
+  fill-opacity: 0.22; }
+  .viz-area.viz-focused .viz-color-6 .viz-scatter-point.viz-active {
+    stroke: #00ff5d;
+    stroke-opacity: 1; }
+  .viz-area.viz-focused .viz-color-6 .viz-scatter-point.viz-active, .viz-area.viz-focused .viz-color-6 .viz-scatter-point.viz-opened {
+    fill: #fff !important;
+    fill-opacity: 1; }
+
+.viz-area.viz-focused .viz-color-7.viz-area-path {
+  transition: fill-color 0.25s linear, stroke-color 0.25s linear;
+  fill: #33ffba;
+  fill-opacity: 0.22;
+  stroke: #33ffba;
+  stroke-opacity: 0.22; }
+  .viz-area.viz-focused .viz-color-7.viz-area-path:hover, .viz-area.viz-focused .viz-color-7.viz-area-path.viz-active {
+    fill: #33ffba;
+    fill-opacity: 1;
+    stroke: #33ffba;
+    stroke-opacity: 1; }
+
+.viz-area.viz-focused .viz-color-7 .viz-scatter-point {
+  stroke: #33ffba;
+  stroke-opacity: 0.22;
+  fill: #33ffba;
+  fill-opacity: 0.22; }
+  .viz-area.viz-focused .viz-color-7 .viz-scatter-point.viz-active {
+    stroke: #00ffa9;
+    stroke-opacity: 1; }
+  .viz-area.viz-focused .viz-color-7 .viz-scatter-point.viz-active, .viz-area.viz-focused .viz-color-7 .viz-scatter-point.viz-opened {
+    fill: #fff !important;
+    fill-opacity: 1; }
+
+.viz-area.viz-focused .viz-color-8.viz-area-path {
+  transition: fill-color 0.25s linear, stroke-color 0.25s linear;
+  fill: #33fff8;
+  fill-opacity: 0.22;
+  stroke: #33fff8;
+  stroke-opacity: 0.22; }
+  .viz-area.viz-focused .viz-color-8.viz-area-path:hover, .viz-area.viz-focused .viz-color-8.viz-area-path.viz-active {
+    fill: #33fff8;
+    fill-opacity: 1;
+    stroke: #33fff8;
+    stroke-opacity: 1; }
+
+.viz-area.viz-focused .viz-color-8 .viz-scatter-point {
+  stroke: #33fff8;
+  stroke-opacity: 0.22;
+  fill: #33fff8;
+  fill-opacity: 0.22; }
+  .viz-area.viz-focused .viz-color-8 .viz-scatter-point.viz-active {
+    stroke: #00fff6;
+    stroke-opacity: 1; }
+  .viz-area.viz-focused .viz-color-8 .viz-scatter-point.viz-active, .viz-area.viz-focused .viz-color-8 .viz-scatter-point.viz-opened {
+    fill: #fff !important;
+    fill-opacity: 1; }
+
+.viz-area.viz-focused .viz-color-9.viz-area-path {
+  transition: fill-color 0.25s linear, stroke-color 0.25s linear;
+  fill: #33c9ff;
+  fill-opacity: 0.22;
+  stroke: #33c9ff;
+  stroke-opacity: 0.22; }
+  .viz-area.viz-focused .viz-color-9.viz-area-path:hover, .viz-area.viz-focused .viz-color-9.viz-area-path.viz-active {
+    fill: #33c9ff;
+    fill-opacity: 1;
+    stroke: #33c9ff;
+    stroke-opacity: 1; }
+
+.viz-area.viz-focused .viz-color-9 .viz-scatter-point {
+  stroke: #33c9ff;
+  stroke-opacity: 0.22;
+  fill: #33c9ff;
+  fill-opacity: 0.22; }
+  .viz-area.viz-focused .viz-color-9 .viz-scatter-point.viz-active {
+    stroke: #00bcff;
+    stroke-opacity: 1; }
+  .viz-area.viz-focused .viz-color-9 .viz-scatter-point.viz-active, .viz-area.viz-focused .viz-color-9 .viz-scatter-point.viz-opened {
+    fill: #fff !important;
+    fill-opacity: 1; }
+
+.viz-area.viz-focused .viz-color-10.viz-area-path {
+  transition: fill-color 0.25s linear, stroke-color 0.25s linear;
+  fill: #338cff;
+  fill-opacity: 0.22;
+  stroke: #338cff;
+  stroke-opacity: 0.22; }
+  .viz-area.viz-focused .viz-color-10.viz-area-path:hover, .viz-area.viz-focused .viz-color-10.viz-area-path.viz-active {
+    fill: #338cff;
+    fill-opacity: 1;
+    stroke: #338cff;
+    stroke-opacity: 1; }
+
+.viz-area.viz-focused .viz-color-10 .viz-scatter-point {
+  stroke: #338cff;
+  stroke-opacity: 0.22;
+  fill: #338cff;
+  fill-opacity: 0.22; }
+  .viz-area.viz-focused .viz-color-10 .viz-scatter-point.viz-active {
+    stroke: #006fff;
+    stroke-opacity: 1; }
+  .viz-area.viz-focused .viz-color-10 .viz-scatter-point.viz-active, .viz-area.viz-focused .viz-color-10 .viz-scatter-point.viz-opened {
+    fill: #fff !important;
+    fill-opacity: 1; }
+
+.viz-area.viz-focused .viz-color-11.viz-area-path {
+  transition: fill-color 0.25s linear, stroke-color 0.25s linear;
+  fill: #334fff;
+  fill-opacity: 0.22;
+  stroke: #334fff;
+  stroke-opacity: 0.22; }
+  .viz-area.viz-focused .viz-color-11.viz-area-path:hover, .viz-area.viz-focused .viz-color-11.viz-area-path.viz-active {
+    fill: #334fff;
+    fill-opacity: 1;
+    stroke: #334fff;
+    stroke-opacity: 1; }
+
+.viz-area.viz-focused .viz-color-11 .viz-scatter-point {
+  stroke: #334fff;
+  stroke-opacity: 0.22;
+  fill: #334fff;
+  fill-opacity: 0.22; }
+  .viz-area.viz-focused .viz-color-11 .viz-scatter-point.viz-active {
+    stroke: #0023ff;
+    stroke-opacity: 1; }
+  .viz-area.viz-focused .viz-color-11 .viz-scatter-point.viz-active, .viz-area.viz-focused .viz-color-11 .viz-scatter-point.viz-opened {
+    fill: #fff !important;
+    fill-opacity: 1; }
+
+.viz-area .viz-axis.viz-axis-x g.tick text {
+  text-anchor: middle; }
+
+.viz-pie .viz-color-0.viz-pie-arc {
+  transition: fill-color 0.25s linear, stroke-color 0.25s linear;
+  fill: #ffa633;
+  fill-opacity: 1;
+  stroke: #ffa633;
+  stroke-opacity: 1; }
+  .viz-pie .viz-color-0.viz-pie-arc:hover, .viz-pie .viz-color-0.viz-pie-arc.viz-active {
+    fill: #ffa633;
+    fill-opacity: 1;
+    stroke: #ffa633;
+    stroke-opacity: 1; }
+
+.viz-pie .viz-color-0.viz-active .viz-pie-arc {
+  fill: #ffa633;
+  fill-opacity: 1;
+  stroke: #ffa633;
+  stroke-opacity: 1; }
+
+.viz-pie .viz-color-1.viz-pie-arc {
+  transition: fill-color 0.25s linear, stroke-color 0.25s linear;
+  fill: #ffe333;
+  fill-opacity: 1;
+  stroke: #ffe333;
+  stroke-opacity: 1; }
+  .viz-pie .viz-color-1.viz-pie-arc:hover, .viz-pie .viz-color-1.viz-pie-arc.viz-active {
+    fill: #ffe333;
+    fill-opacity: 1;
+    stroke: #ffe333;
+    stroke-opacity: 1; }
+
+.viz-pie .viz-color-1.viz-active .viz-pie-arc {
+  fill: #ffe333;
+  fill-opacity: 1;
+  stroke: #ffe333;
+  stroke-opacity: 1; }
+
+.viz-pie .viz-color-2.viz-pie-arc {
+  transition: fill-color 0.25s linear, stroke-color 0.25s linear;
+  fill: #deff33;
+  fill-opacity: 1;
+  stroke: #deff33;
+  stroke-opacity: 1; }
+  .viz-pie .viz-color-2.viz-pie-arc:hover, .viz-pie .viz-color-2.viz-pie-arc.viz-active {
+    fill: #deff33;
+    fill-opacity: 1;
+    stroke: #deff33;
+    stroke-opacity: 1; }
+
+.viz-pie .viz-color-2.viz-active .viz-pie-arc {
+  fill: #deff33;
+  fill-opacity: 1;
+  stroke: #deff33;
+  stroke-opacity: 1; }
+
+.viz-pie .viz-color-3.viz-pie-arc {
+  transition: fill-color 0.25s linear, stroke-color 0.25s linear;
+  fill: #a0ff33;
+  fill-opacity: 1;
+  stroke: #a0ff33;
+  stroke-opacity: 1; }
+  .viz-pie .viz-color-3.viz-pie-arc:hover, .viz-pie .viz-color-3.viz-pie-arc.viz-active {
+    fill: #a0ff33;
+    fill-opacity: 1;
+    stroke: #a0ff33;
+    stroke-opacity: 1; }
+
+.viz-pie .viz-color-3.viz-active .viz-pie-arc {
+  fill: #a0ff33;
+  fill-opacity: 1;
+  stroke: #a0ff33;
+  stroke-opacity: 1; }
+
+.viz-pie .viz-color-4.viz-pie-arc {
+  transition: fill-color 0.25s linear, stroke-color 0.25s linear;
+  fill: #63ff33;
+  fill-opacity: 1;
+  stroke: #63ff33;
+  stroke-opacity: 1; }
+  .viz-pie .viz-color-4.viz-pie-arc:hover, .viz-pie .viz-color-4.viz-pie-arc.viz-active {
+    fill: #63ff33;
+    fill-opacity: 1;
+    stroke: #63ff33;
+    stroke-opacity: 1; }
+
+.viz-pie .viz-color-4.viz-active .viz-pie-arc {
+  fill: #63ff33;
+  fill-opacity: 1;
+  stroke: #63ff33;
+  stroke-opacity: 1; }
+
+.viz-pie .viz-color-5.viz-pie-arc {
+  transition: fill-color 0.25s linear, stroke-color 0.25s linear;
+  fill: #33ff40;
+  fill-opacity: 1;
+  stroke: #33ff40;
+  stroke-opacity: 1; }
+  .viz-pie .viz-color-5.viz-pie-arc:hover, .viz-pie .viz-color-5.viz-pie-arc.viz-active {
+    fill: #33ff40;
+    fill-opacity: 1;
+    stroke: #33ff40;
+    stroke-opacity: 1; }
+
+.viz-pie .viz-color-5.viz-active .viz-pie-arc {
+  fill: #33ff40;
+  fill-opacity: 1;
+  stroke: #33ff40;
+  stroke-opacity: 1; }
+
+.viz-pie .viz-color-6.viz-pie-arc {
+  transition: fill-color 0.25s linear, stroke-color 0.25s linear;
+  fill: #33ff7d;
+  fill-opacity: 1;
+  stroke: #33ff7d;
+  stroke-opacity: 1; }
+  .viz-pie .viz-color-6.viz-pie-arc:hover, .viz-pie .viz-color-6.viz-pie-arc.viz-active {
+    fill: #33ff7d;
+    fill-opacity: 1;
+    stroke: #33ff7d;
+    stroke-opacity: 1; }
+
+.viz-pie .viz-color-6.viz-active .viz-pie-arc {
+  fill: #33ff7d;
+  fill-opacity: 1;
+  stroke: #33ff7d;
+  stroke-opacity: 1; }
+
+.viz-pie .viz-color-7.viz-pie-arc {
+  transition: fill-color 0.25s linear, stroke-color 0.25s linear;
+  fill: #33ffba;
+  fill-opacity: 1;
+  stroke: #33ffba;
+  stroke-opacity: 1; }
+  .viz-pie .viz-color-7.viz-pie-arc:hover, .viz-pie .viz-color-7.viz-pie-arc.viz-active {
+    fill: #33ffba;
+    fill-opacity: 1;
+    stroke: #33ffba;
+    stroke-opacity: 1; }
+
+.viz-pie .viz-color-7.viz-active .viz-pie-arc {
+  fill: #33ffba;
+  fill-opacity: 1;
+  stroke: #33ffba;
+  stroke-opacity: 1; }
+
+.viz-pie .viz-color-8.viz-pie-arc {
+  transition: fill-color 0.25s linear, stroke-color 0.25s linear;
+  fill: #33fff8;
+  fill-opacity: 1;
+  stroke: #33fff8;
+  stroke-opacity: 1; }
+  .viz-pie .viz-color-8.viz-pie-arc:hover, .viz-pie .viz-color-8.viz-pie-arc.viz-active {
+    fill: #33fff8;
+    fill-opacity: 1;
+    stroke: #33fff8;
+    stroke-opacity: 1; }
+
+.viz-pie .viz-color-8.viz-active .viz-pie-arc {
+  fill: #33fff8;
+  fill-opacity: 1;
+  stroke: #33fff8;
+  stroke-opacity: 1; }
+
+.viz-pie .viz-color-9.viz-pie-arc {
+  transition: fill-color 0.25s linear, stroke-color 0.25s linear;
+  fill: #33c9ff;
+  fill-opacity: 1;
+  stroke: #33c9ff;
+  stroke-opacity: 1; }
+  .viz-pie .viz-color-9.viz-pie-arc:hover, .viz-pie .viz-color-9.viz-pie-arc.viz-active {
+    fill: #33c9ff;
+    fill-opacity: 1;
+    stroke: #33c9ff;
+    stroke-opacity: 1; }
+
+.viz-pie .viz-color-9.viz-active .viz-pie-arc {
+  fill: #33c9ff;
+  fill-opacity: 1;
+  stroke: #33c9ff;
+  stroke-opacity: 1; }
+
+.viz-pie .viz-color-10.viz-pie-arc {
+  transition: fill-color 0.25s linear, stroke-color 0.25s linear;
+  fill: #338cff;
+  fill-opacity: 1;
+  stroke: #338cff;
+  stroke-opacity: 1; }
+  .viz-pie .viz-color-10.viz-pie-arc:hover, .viz-pie .viz-color-10.viz-pie-arc.viz-active {
+    fill: #338cff;
+    fill-opacity: 1;
+    stroke: #338cff;
+    stroke-opacity: 1; }
+
+.viz-pie .viz-color-10.viz-active .viz-pie-arc {
+  fill: #338cff;
+  fill-opacity: 1;
+  stroke: #338cff;
+  stroke-opacity: 1; }
+
+.viz-pie .viz-color-11.viz-pie-arc {
+  transition: fill-color 0.25s linear, stroke-color 0.25s linear;
+  fill: #334fff;
+  fill-opacity: 1;
+  stroke: #334fff;
+  stroke-opacity: 1; }
+  .viz-pie .viz-color-11.viz-pie-arc:hover, .viz-pie .viz-color-11.viz-pie-arc.viz-active {
+    fill: #334fff;
+    fill-opacity: 1;
+    stroke: #334fff;
+    stroke-opacity: 1; }
+
+.viz-pie .viz-color-11.viz-active .viz-pie-arc {
+  fill: #334fff;
+  fill-opacity: 1;
+  stroke: #334fff;
+  stroke-opacity: 1; }
+
+.viz-pie.viz-focused .viz-color-0.viz-pie-arc {
+  transition: fill-color 0.25s linear, stroke-color 0.25s linear;
+  fill: #ffa633;
+  fill-opacity: 0.22;
+  stroke: #ffa633;
+  stroke-opacity: 0.22; }
+  .viz-pie.viz-focused .viz-color-0.viz-pie-arc:hover, .viz-pie.viz-focused .viz-color-0.viz-pie-arc.viz-active {
+    fill: #ffa633;
+    fill-opacity: 1;
+    stroke: #ffa633;
+    stroke-opacity: 1; }
+
+.viz-pie.viz-focused .viz-color-0.viz-active .viz-pie-arc {
+  fill: #ffa633;
+  fill-opacity: 0.22;
+  stroke: #ffa633;
+  stroke-opacity: 0.22; }
+
+.viz-pie.viz-focused .viz-color-1.viz-pie-arc {
+  transition: fill-color 0.25s linear, stroke-color 0.25s linear;
+  fill: #ffe333;
+  fill-opacity: 0.22;
+  stroke: #ffe333;
+  stroke-opacity: 0.22; }
+  .viz-pie.viz-focused .viz-color-1.viz-pie-arc:hover, .viz-pie.viz-focused .viz-color-1.viz-pie-arc.viz-active {
+    fill: #ffe333;
+    fill-opacity: 1;
+    stroke: #ffe333;
+    stroke-opacity: 1; }
+
+.viz-pie.viz-focused .viz-color-1.viz-active .viz-pie-arc {
+  fill: #ffe333;
+  fill-opacity: 0.22;
+  stroke: #ffe333;
+  stroke-opacity: 0.22; }
+
+.viz-pie.viz-focused .viz-color-2.viz-pie-arc {
+  transition: fill-color 0.25s linear, stroke-color 0.25s linear;
+  fill: #deff33;
+  fill-opacity: 0.22;
+  stroke: #deff33;
+  stroke-opacity: 0.22; }
+  .viz-pie.viz-focused .viz-color-2.viz-pie-arc:hover, .viz-pie.viz-focused .viz-color-2.viz-pie-arc.viz-active {
+    fill: #deff33;
+    fill-opacity: 1;
+    stroke: #deff33;
+    stroke-opacity: 1; }
+
+.viz-pie.viz-focused .viz-color-2.viz-active .viz-pie-arc {
+  fill: #deff33;
+  fill-opacity: 0.22;
+  stroke: #deff33;
+  stroke-opacity: 0.22; }
+
+.viz-pie.viz-focused .viz-color-3.viz-pie-arc {
+  transition: fill-color 0.25s linear, stroke-color 0.25s linear;
+  fill: #a0ff33;
+  fill-opacity: 0.22;
+  stroke: #a0ff33;
+  stroke-opacity: 0.22; }
+  .viz-pie.viz-focused .viz-color-3.viz-pie-arc:hover, .viz-pie.viz-focused .viz-color-3.viz-pie-arc.viz-active {
+    fill: #a0ff33;
+    fill-opacity: 1;
+    stroke: #a0ff33;
+    stroke-opacity: 1; }
+
+.viz-pie.viz-focused .viz-color-3.viz-active .viz-pie-arc {
+  fill: #a0ff33;
+  fill-opacity: 0.22;
+  stroke: #a0ff33;
+  stroke-opacity: 0.22; }
+
+.viz-pie.viz-focused .viz-color-4.viz-pie-arc {
+  transition: fill-color 0.25s linear, stroke-color 0.25s linear;
+  fill: #63ff33;
+  fill-opacity: 0.22;
+  stroke: #63ff33;
+  stroke-opacity: 0.22; }
+  .viz-pie.viz-focused .viz-color-4.viz-pie-arc:hover, .viz-pie.viz-focused .viz-color-4.viz-pie-arc.viz-active {
+    fill: #63ff33;
+    fill-opacity: 1;
+    stroke: #63ff33;
+    stroke-opacity: 1; }
+
+.viz-pie.viz-focused .viz-color-4.viz-active .viz-pie-arc {
+  fill: #63ff33;
+  fill-opacity: 0.22;
+  stroke: #63ff33;
+  stroke-opacity: 0.22; }
+
+.viz-pie.viz-focused .viz-color-5.viz-pie-arc {
+  transition: fill-color 0.25s linear, stroke-color 0.25s linear;
+  fill: #33ff40;
+  fill-opacity: 0.22;
+  stroke: #33ff40;
+  stroke-opacity: 0.22; }
+  .viz-pie.viz-focused .viz-color-5.viz-pie-arc:hover, .viz-pie.viz-focused .viz-color-5.viz-pie-arc.viz-active {
+    fill: #33ff40;
+    fill-opacity: 1;
+    stroke: #33ff40;
+    stroke-opacity: 1; }
+
+.viz-pie.viz-focused .viz-color-5.viz-active .viz-pie-arc {
+  fill: #33ff40;
+  fill-opacity: 0.22;
+  stroke: #33ff40;
+  stroke-opacity: 0.22; }
+
+.viz-pie.viz-focused .viz-color-6.viz-pie-arc {
+  transition: fill-color 0.25s linear, stroke-color 0.25s linear;
+  fill: #33ff7d;
+  fill-opacity: 0.22;
+  stroke: #33ff7d;
+  stroke-opacity: 0.22; }
+  .viz-pie.viz-focused .viz-color-6.viz-pie-arc:hover, .viz-pie.viz-focused .viz-color-6.viz-pie-arc.viz-active {
+    fill: #33ff7d;
+    fill-opacity: 1;
+    stroke: #33ff7d;
+    stroke-opacity: 1; }
+
+.viz-pie.viz-focused .viz-color-6.viz-active .viz-pie-arc {
+  fill: #33ff7d;
+  fill-opacity: 0.22;
+  stroke: #33ff7d;
+  stroke-opacity: 0.22; }
+
+.viz-pie.viz-focused .viz-color-7.viz-pie-arc {
+  transition: fill-color 0.25s linear, stroke-color 0.25s linear;
+  fill: #33ffba;
+  fill-opacity: 0.22;
+  stroke: #33ffba;
+  stroke-opacity: 0.22; }
+  .viz-pie.viz-focused .viz-color-7.viz-pie-arc:hover, .viz-pie.viz-focused .viz-color-7.viz-pie-arc.viz-active {
+    fill: #33ffba;
+    fill-opacity: 1;
+    stroke: #33ffba;
+    stroke-opacity: 1; }
+
+.viz-pie.viz-focused .viz-color-7.viz-active .viz-pie-arc {
+  fill: #33ffba;
+  fill-opacity: 0.22;
+  stroke: #33ffba;
+  stroke-opacity: 0.22; }
+
+.viz-pie.viz-focused .viz-color-8.viz-pie-arc {
+  transition: fill-color 0.25s linear, stroke-color 0.25s linear;
+  fill: #33fff8;
+  fill-opacity: 0.22;
+  stroke: #33fff8;
+  stroke-opacity: 0.22; }
+  .viz-pie.viz-focused .viz-color-8.viz-pie-arc:hover, .viz-pie.viz-focused .viz-color-8.viz-pie-arc.viz-active {
+    fill: #33fff8;
+    fill-opacity: 1;
+    stroke: #33fff8;
+    stroke-opacity: 1; }
+
+.viz-pie.viz-focused .viz-color-8.viz-active .viz-pie-arc {
+  fill: #33fff8;
+  fill-opacity: 0.22;
+  stroke: #33fff8;
+  stroke-opacity: 0.22; }
+
+.viz-pie.viz-focused .viz-color-9.viz-pie-arc {
+  transition: fill-color 0.25s linear, stroke-color 0.25s linear;
+  fill: #33c9ff;
+  fill-opacity: 0.22;
+  stroke: #33c9ff;
+  stroke-opacity: 0.22; }
+  .viz-pie.viz-focused .viz-color-9.viz-pie-arc:hover, .viz-pie.viz-focused .viz-color-9.viz-pie-arc.viz-active {
+    fill: #33c9ff;
+    fill-opacity: 1;
+    stroke: #33c9ff;
+    stroke-opacity: 1; }
+
+.viz-pie.viz-focused .viz-color-9.viz-active .viz-pie-arc {
+  fill: #33c9ff;
+  fill-opacity: 0.22;
+  stroke: #33c9ff;
+  stroke-opacity: 0.22; }
+
+.viz-pie.viz-focused .viz-color-10.viz-pie-arc {
+  transition: fill-color 0.25s linear, stroke-color 0.25s linear;
+  fill: #338cff;
+  fill-opacity: 0.22;
+  stroke: #338cff;
+  stroke-opacity: 0.22; }
+  .viz-pie.viz-focused .viz-color-10.viz-pie-arc:hover, .viz-pie.viz-focused .viz-color-10.viz-pie-arc.viz-active {
+    fill: #338cff;
+    fill-opacity: 1;
+    stroke: #338cff;
+    stroke-opacity: 1; }
+
+.viz-pie.viz-focused .viz-color-10.viz-active .viz-pie-arc {
+  fill: #338cff;
+  fill-opacity: 0.22;
+  stroke: #338cff;
+  stroke-opacity: 0.22; }
+
+.viz-pie.viz-focused .viz-color-11.viz-pie-arc {
+  transition: fill-color 0.25s linear, stroke-color 0.25s linear;
+  fill: #334fff;
+  fill-opacity: 0.22;
+  stroke: #334fff;
+  stroke-opacity: 0.22; }
+  .viz-pie.viz-focused .viz-color-11.viz-pie-arc:hover, .viz-pie.viz-focused .viz-color-11.viz-pie-arc.viz-active {
+    fill: #334fff;
+    fill-opacity: 1;
+    stroke: #334fff;
+    stroke-opacity: 1; }
+
+.viz-pie.viz-focused .viz-color-11.viz-active .viz-pie-arc {
+  fill: #334fff;
+  fill-opacity: 0.22;
+  stroke: #334fff;
+  stroke-opacity: 0.22; }
+
+.viz-pie .viz-pie-arc-empty {
+  fill: #ebebeb;
+  stroke: #ebebeb;
+  fill-opacity: 1;
+  stroke-opacity: 1; }
+
+.viz-table table {
+  width: 100%;
+  border-spacing: 0;
+  border-collapse: collapse; }
+
+.viz-table th {
+  position: relative;
+  text-align: left;
+  padding: 10px;
+  background: #ffffff;
+  font-size: 14px !important;
+  font-weight: 100; }
+
+.viz-table tr:nth-child(odd) {
+  background-color: #f6f6f6; }
+
+.viz-table td {
+  padding: 10px; }
+
+.viz-table .viz-table-dimension {
+  font-size: 14px; }
+
+.viz-table .viz-table-metric {
+  font-size: 18px;
+  text-align: right; }
+
+.viz-metric .viz-metric-value {
+  font-size: 34px;
+  color: #ffa633; }
+
+.viz-metric .viz-metric-compare-up {
+  color: green; }
+  .viz-metric .viz-metric-compare-up svg {
+    fill: green; }
+
+.viz-metric .viz-metric-compare-down {
+  color: red; }
+  .viz-metric .viz-metric-compare-down svg {
+    fill: red; }
+
+.viz .viz-legend {
+  width: 250px;
+  text-overflow: ellipsis;
+  position: absolute;
+  top: 0;
+  right: 0;
+  overflow-y: auto;
+  padding: 0 20px; }
+  .viz .viz-legend ul {
+    list-style: none;
+    margin: 0;
+    padding: 0; }
+    .viz .viz-legend ul li {
+      font-size: 14px;
+      font-family: "Open Sans", sans-serif;
+      text-transform: none;
+      margin-bottom: 0px; }
+      .viz .viz-legend ul li:not(.viz-selectable) {
+        cursor: default; }
+  .viz .viz-legend .viz-series-indicator {
+    margin-right: 4px; }
+  .viz .viz-legend .viz-color-0.viz-series-indicator {
+    background: #ffa633;
+    transition: opacity 0.25s linear;
+    opacity: 1; }
+    .viz .viz-legend .viz-color-0.viz-series-indicator.viz-active {
+      background: #ffa633;
+      opacity: 1; }
+  .viz .viz-legend .viz-color-1.viz-series-indicator {
+    background: #ffe333;
+    transition: opacity 0.25s linear;
+    opacity: 1; }
+    .viz .viz-legend .viz-color-1.viz-series-indicator.viz-active {
+      background: #ffe333;
+      opacity: 1; }
+  .viz .viz-legend .viz-color-2.viz-series-indicator {
+    background: #deff33;
+    transition: opacity 0.25s linear;
+    opacity: 1; }
+    .viz .viz-legend .viz-color-2.viz-series-indicator.viz-active {
+      background: #deff33;
+      opacity: 1; }
+  .viz .viz-legend .viz-color-3.viz-series-indicator {
+    background: #a0ff33;
+    transition: opacity 0.25s linear;
+    opacity: 1; }
+    .viz .viz-legend .viz-color-3.viz-series-indicator.viz-active {
+      background: #a0ff33;
+      opacity: 1; }
+  .viz .viz-legend .viz-color-4.viz-series-indicator {
+    background: #63ff33;
+    transition: opacity 0.25s linear;
+    opacity: 1; }
+    .viz .viz-legend .viz-color-4.viz-series-indicator.viz-active {
+      background: #63ff33;
+      opacity: 1; }
+  .viz .viz-legend .viz-color-5.viz-series-indicator {
+    background: #33ff40;
+    transition: opacity 0.25s linear;
+    opacity: 1; }
+    .viz .viz-legend .viz-color-5.viz-series-indicator.viz-active {
+      background: #33ff40;
+      opacity: 1; }
+  .viz .viz-legend .viz-color-6.viz-series-indicator {
+    background: #33ff7d;
+    transition: opacity 0.25s linear;
+    opacity: 1; }
+    .viz .viz-legend .viz-color-6.viz-series-indicator.viz-active {
+      background: #33ff7d;
+      opacity: 1; }
+  .viz .viz-legend .viz-color-7.viz-series-indicator {
+    background: #33ffba;
+    transition: opacity 0.25s linear;
+    opacity: 1; }
+    .viz .viz-legend .viz-color-7.viz-series-indicator.viz-active {
+      background: #33ffba;
+      opacity: 1; }
+  .viz .viz-legend .viz-color-8.viz-series-indicator {
+    background: #33fff8;
+    transition: opacity 0.25s linear;
+    opacity: 1; }
+    .viz .viz-legend .viz-color-8.viz-series-indicator.viz-active {
+      background: #33fff8;
+      opacity: 1; }
+  .viz .viz-legend .viz-color-9.viz-series-indicator {
+    background: #33c9ff;
+    transition: opacity 0.25s linear;
+    opacity: 1; }
+    .viz .viz-legend .viz-color-9.viz-series-indicator.viz-active {
+      background: #33c9ff;
+      opacity: 1; }
+  .viz .viz-legend .viz-color-10.viz-series-indicator {
+    background: #338cff;
+    transition: opacity 0.25s linear;
+    opacity: 1; }
+    .viz .viz-legend .viz-color-10.viz-series-indicator.viz-active {
+      background: #338cff;
+      opacity: 1; }
+  .viz .viz-legend .viz-color-11.viz-series-indicator {
+    background: #334fff;
+    transition: opacity 0.25s linear;
+    opacity: 1; }
+    .viz .viz-legend .viz-color-11.viz-series-indicator.viz-active {
+      background: #334fff;
+      opacity: 1; }
+
+.viz .viz-legend-item-value {
+  color: #88949f; }
+  .viz .viz-legend-item-value:before {
+    content: ': '; }
+
+.viz.viz-focused .viz-legend .viz-color-0.viz-series-indicator {
+  background: #ffa633;
+  transition: opacity 0.25s linear;
+  opacity: 0.22; }
+  .viz.viz-focused .viz-legend .viz-color-0.viz-series-indicator.viz-active {
+    background: #ffa633;
+    opacity: 1; }
+
+.viz.viz-focused .viz-legend .viz-color-1.viz-series-indicator {
+  background: #ffe333;
+  transition: opacity 0.25s linear;
+  opacity: 0.22; }
+  .viz.viz-focused .viz-legend .viz-color-1.viz-series-indicator.viz-active {
+    background: #ffe333;
+    opacity: 1; }
+
+.viz.viz-focused .viz-legend .viz-color-2.viz-series-indicator {
+  background: #deff33;
+  transition: opacity 0.25s linear;
+  opacity: 0.22; }
+  .viz.viz-focused .viz-legend .viz-color-2.viz-series-indicator.viz-active {
+    background: #deff33;
+    opacity: 1; }
+
+.viz.viz-focused .viz-legend .viz-color-3.viz-series-indicator {
+  background: #a0ff33;
+  transition: opacity 0.25s linear;
+  opacity: 0.22; }
+  .viz.viz-focused .viz-legend .viz-color-3.viz-series-indicator.viz-active {
+    background: #a0ff33;
+    opacity: 1; }
+
+.viz.viz-focused .viz-legend .viz-color-4.viz-series-indicator {
+  background: #63ff33;
+  transition: opacity 0.25s linear;
+  opacity: 0.22; }
+  .viz.viz-focused .viz-legend .viz-color-4.viz-series-indicator.viz-active {
+    background: #63ff33;
+    opacity: 1; }
+
+.viz.viz-focused .viz-legend .viz-color-5.viz-series-indicator {
+  background: #33ff40;
+  transition: opacity 0.25s linear;
+  opacity: 0.22; }
+  .viz.viz-focused .viz-legend .viz-color-5.viz-series-indicator.viz-active {
+    background: #33ff40;
+    opacity: 1; }
+
+.viz.viz-focused .viz-legend .viz-color-6.viz-series-indicator {
+  background: #33ff7d;
+  transition: opacity 0.25s linear;
+  opacity: 0.22; }
+  .viz.viz-focused .viz-legend .viz-color-6.viz-series-indicator.viz-active {
+    background: #33ff7d;
+    opacity: 1; }
+
+.viz.viz-focused .viz-legend .viz-color-7.viz-series-indicator {
+  background: #33ffba;
+  transition: opacity 0.25s linear;
+  opacity: 0.22; }
+  .viz.viz-focused .viz-legend .viz-color-7.viz-series-indicator.viz-active {
+    background: #33ffba;
+    opacity: 1; }
+
+.viz.viz-focused .viz-legend .viz-color-8.viz-series-indicator {
+  background: #33fff8;
+  transition: opacity 0.25s linear;
+  opacity: 0.22; }
+  .viz.viz-focused .viz-legend .viz-color-8.viz-series-indicator.viz-active {
+    background: #33fff8;
+    opacity: 1; }
+
+.viz.viz-focused .viz-legend .viz-color-9.viz-series-indicator {
+  background: #33c9ff;
+  transition: opacity 0.25s linear;
+  opacity: 0.22; }
+  .viz.viz-focused .viz-legend .viz-color-9.viz-series-indicator.viz-active {
+    background: #33c9ff;
+    opacity: 1; }
+
+.viz.viz-focused .viz-legend .viz-color-10.viz-series-indicator {
+  background: #338cff;
+  transition: opacity 0.25s linear;
+  opacity: 0.22; }
+  .viz.viz-focused .viz-legend .viz-color-10.viz-series-indicator.viz-active {
+    background: #338cff;
+    opacity: 1; }
+
+.viz.viz-focused .viz-legend .viz-color-11.viz-series-indicator {
+  background: #334fff;
+  transition: opacity 0.25s linear;
+  opacity: 0.22; }
+  .viz.viz-focused .viz-legend .viz-color-11.viz-series-indicator.viz-active {
+    background: #334fff;
+    opacity: 1; }
+
+.viz {
+  position: relative;
+  min-height: 25px;
+  height: 100%;
+  width: 100%;
+  background-color: transparent;
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  color: #6D7A87; }
+  .viz text {
+    font-size: 10px;
+    font-family: "Open Sans", sans-serif;
+    fill: #6D7A87; }
+  .viz .viz-line-path {
+    fill: none;
+    stroke-width: 3px; }
+  .viz .viz-scatter-point {
+    stroke-width: 3px; }
+    .viz .viz-scatter-point.viz-scatter-point-placeholder {
+      stroke: transparent;
+      fill: transparent; }
+  .viz .reflect-axis path, .viz .reflect-axis line {
+    fill: none;
+    stroke: rgba(0, 0, 0, 0.1); }
+  .viz .viz-axis .tick line {
+    stroke: #ebebeb; }
+  .viz .viz-axis .domain {
+    stroke: #ebebeb; }
+  .viz .viz-selectable {
+    cursor: pointer; }
+  .viz .viz-series-indicator {
+    display: inline-block;
+    height: 9px;
+    width: 13px;
+    border-radius: 2px; }
+
+[class^="rc-"] ul {
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+
+[class^="rc-"] h1, [class^="rc-"] h2, [class^="rc-"] h3, [class^="rc-"] h4, [class^="rc-"] h5, [class^="rc-"] h6 {
+  margin: 0; }
+
+[class^="rc-"] p {
+  margin: 0; }
+
+[class^="rc-"] a {
+  text-decoration: none;
+  color: #ffa633; }
+
+[class^="rc-"] {
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px; }
+  [class^="rc-"] small {
+    font-size: 12px; }
+
+.rc-button {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: inline-block;
+  height: 44px;
+  line-height: 43px;
+  text-align: center;
+  padding: 0px 20px;
+  background: #ffa633;
+  color: white !important;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  cursor: pointer;
+  border-radius: 4px;
+  outline: none; }
+  .rc-button svg {
+    fill: white;
+    height: 100%; }
+  .rc-button.rc-button-block {
+    display: block;
+    width: 100%; }
+  .rc-button.rc-button-processing {
+    position: relative; }
+    .rc-button.rc-button-processing .rc-button-content {
+      visibility: hidden; }
+    .rc-button.rc-button-processing svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%; }
+  .rc-button.secondary {
+    background: transparent;
+    border: 1px solid #b0aeab;
+    color: #b0aeab !important; }
+    .rc-button.secondary:hover {
+      background: #84807c;
+      border: 1px solid #84807c;
+      color: white !important; }
+  .rc-button.rc-button-small {
+    height: 33px;
+    line-height: 29px;
+    padding: 0 8px; }
+  .rc-button.rc-button-large {
+    font-size: 14px;
+    height: 60px;
+    line-height: 59px; }
+  .rc-button:hover {
+    background: #ff9000;
+    color: #fff !important; }
+  .rc-button[disabled] {
+    background-color: #EFEFEF; }
+    .rc-button[disabled]:hover {
+      background-color: #EFEFEF; }
+  .rc-button .rc-button-icon {
+    display: block;
+    height: 100%;
+    float: left; }
+  .rc-button .rc-button-content {
+    font-family: "Montserrat", sans-serif;
+    font-size: 12px; }
+  .rc-button .rc-button-icon + .rc-button-content {
+    padding-left: 10px; }
+
+.rc-button-group {
+  margin-bottom: 5px; }
+  .rc-button-group.rc-button-group-two-up .rc-button {
+    width: 50%; }
+  .rc-button-group.rc-button-group-three-up .rc-button {
+    width: 33.33%; }
+  .rc-button-group .rc-button {
+    display: inline-block;
+    border-radius: 0;
+    height: 25px;
+    line-height: 25px;
+    font-size: 11px;
+    letter-spacing: 1px;
+    padding: 0; }
+    .rc-button-group .rc-button:first-of-type {
+      border-left-radius: 4px; }
+    .rc-button-group .rc-button:last-of-type {
+      border-right-radius: 4px; }
+
+.rc-floating-action-button {
+  border-radius: 60px;
+  height: 60px;
+  line-height: 60px;
+  width: 60px;
+  padding: 0; }
+  .rc-floating-action-button:before {
+    content: '+';
+    font-size: 36px; }
+
+.rc-card {
+  background: #fff;
+  border: 1px solid #EFEFEF;
+  border-radius: 4px;
+  box-shadow: 0 0px 1px rgba(0, 0, 0, 0.05);
+  display: block;
+  color: #b0aeab; }
+  .rc-card.rc-card-xs {
+    padding: 2px;
+    background-position: center center;
+    background-size: cover; }
+    .rc-card.rc-card-xs .rc-card-content {
+      padding: 13px 0px;
+      border: 2px solid white; }
+      .rc-card.rc-card-xs .rc-card-content .rc-card-title {
+        margin: 0px;
+        text-align: center;
+        visibility: hidden;
+        font-size: 1em; }
+    .rc-card.rc-card-xs:hover .rc-card-content {
+      background: #fff; }
+      .rc-card.rc-card-xs:hover .rc-card-content .rc-card-title {
+        visibility: visible; }
+  .rc-card.rc-card-large {
+    padding-top: 100px; }
+    .rc-card.rc-card-large .rc-card-title {
+      margin-top: 80px;
+      font-size: 1.3em; }
+  .rc-card.rc-card-small {
+    padding-top: 0; }
+    .rc-card.rc-card-small .rc-card-title {
+      margin-top: 0px;
+      font-size: 1.1em; }
+  .rc-card.rc-card-selectable {
+    cursor: pointer; }
+    .rc-card.rc-card-selectable:hover {
+      border: 1px solid #b0aeab; }
+  .rc-card.rc-card-selected {
+    border: 1px solid #ffa633;
+    box-shadow: 0px 0px 0px 1px #ffa633; }
+    .rc-card.rc-card-selected:hover {
+      border: 1px solid #ffa633; }
+  .rc-card.rc-card-removable {
+    position: relative; }
+    .rc-card.rc-card-removable:hover .remove-corner {
+      display: flex; }
+  .rc-card .remove-corner {
+    width: 21px;
+    height: 21px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    float: right;
+    display: none;
+    background: #f6f5f5;
+    border-left: 2px solid #b0aeab;
+    border-bottom: 2px solid #b0aeab;
+    border-bottom-left-radius: 4px;
+    border-top-right-radius: 2px; }
+    .rc-card .remove-corner .rc-card-remove:before {
+      position: absolute;
+      top: -1px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center; }
+    .rc-card .remove-corner:hover {
+      background: #b0aeab; }
+      .rc-card .remove-corner:hover .rc-card-remove {
+        color: #fff; }
+    .rc-card .remove-corner .rc-card-remove {
+      color: #b0aeab; }
+  .rc-card .rc-card-content {
+    background: transparent !important;
+    padding: 20px; }
+  .rc-card .rc-card-title {
+    color: #b0aeab;
+    margin-top: 30px;
+    font-size: 1.2em; }
+  .rc-card .rc-card-subtitle {
+    color: #b0aeab;
+    font-size: 0.8em; }
+
+.rui-loading {
+  width: 100%; }
+  .rui-loading path {
+    fill: #84807c; }
+
+.rc-popover {
+  position: absolute;
+  background: #fff;
+  border: none;
+  border-radius: 4px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+  padding: 16px; }
+
+.rc-dropdown-label {
+  text-decoration: underline;
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffa633; }
+
+.rc-dropdown-menu {
+  padding: 0;
+  padding-bottom: 8px; }
+  .rc-dropdown-menu .rc-dropdown-hint {
+    display: block;
+    padding: 12px;
+    color: #b0aeab;
+    font-size: 14px; }
+  .rc-dropdown-menu .rc-dropdown-item {
+    font-size: 16px;
+    line-height: 16px; }
+    .rc-dropdown-menu .rc-dropdown-item a {
+      display: block;
+      padding: 12px; }
+      .rc-dropdown-menu .rc-dropdown-item a:hover {
+        color: #fff;
+        background: #ff9000; }
+  .rc-dropdown-menu .rc-dropdown-item-selected a {
+    color: #fff;
+    background: #ffa633; }
+  .rc-dropdown-menu .rc-dropdown-item-disabled a {
+    color: #fff;
+    background: #ecebea;
+    cursor: default; }
+    .rc-dropdown-menu .rc-dropdown-item-disabled a:hover {
+      color: #fff;
+      background: #ecebea; }
+  .rc-dropdown-menu li:last-of-type {
+    border-bottom: none; }
+
+.rc-dropdown-menu-multiple .rc-dropdown-item a {
+  position: relative;
+  padding-left: 40px; }
+  .rc-dropdown-menu-multiple .rc-dropdown-item a svg {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 12px; }
+    .rc-dropdown-menu-multiple .rc-dropdown-item a svg * {
+      fill: #fff; }
+
+.rc-tag {
+  display: block;
+  float: left;
+  background: #ecebea;
+  color: #b0aeab !important;
+  font-size: 12px;
+  height: 33px;
+  line-height: 29px;
+  padding: 0 10px;
+  margin-right: 10px;
+  border-radius: 4px;
+  border: 2px solid #ecebea; }
+
+.rc-tag-selected {
+  border: 2px solid #ffa633; }
