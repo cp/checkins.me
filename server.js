@@ -3,6 +3,7 @@ import express from 'express';
 import passport from 'passport';
 import request from 'superagent';
 import sequelize from 'sequelize';
+import reflect from 'reflect-node';
 import bodyParser from 'body-parser';
 import session from 'express-session';
 import FoursquareStrategy from 'passport-foursquare';
@@ -130,7 +131,15 @@ const routeHandlers = {
   callback: (req, res) => {
     req.session.userId = req.user.id;
 
-    res.redirect(`http://127.0.0.1:3000/${req.user.id}`);
+    const params = [{
+      field: 'User ID',
+      op: '=',
+      value: req.user.id
+    }];
+
+    const token = reflect.generateToken(config.reflectSecret, params);
+
+    res.redirect(`http://127.0.0.1:3000/stats?token=${token}&access=${config.reflectAccess}&user=${req.user.id}`);
   },
   webhook: (req, res) => {
     const checkin = JSON.parse(req.body.checkin);

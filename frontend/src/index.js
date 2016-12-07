@@ -10,7 +10,7 @@ ReactDOM.render(
   <Router history={ browserHistory }>
     <Route path={ '/' } component={ App }>
       <IndexRoute component={ SignIn } />
-      <Route path={ '/:userId' } component={ Profile } />
+      <Route path={ '/stats' } component={ Profile } />
     </Route>
   </Router>,
   document.getElementById('root')

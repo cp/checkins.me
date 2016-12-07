@@ -27,6 +27,7 @@
     "passport": "^0.3.2",
     "passport-foursquare": "^1.0.0",
     "pg": "^6.1.0",
+    "reflect-node": "^0.2.0",
     "sequelize": "^3.24.3",
     "sequelize-cli": "^2.4.0",
     "superagent": "^2.3.0"

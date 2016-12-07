@@ -4,8 +4,13 @@ import ReactDOM from 'react-dom';
 class Profile extends React.Component {
   componentDidMount() {
     const element = ReactDOM.findDOMNode(this);
-    const token = 'c77b12dd-a370-48be-9b94-ee388b14510c'
-    const rUI = new ReflectUI(token); // eslint-disable-line no-undef
+    const query = this.props.location.query;
+    const tokens = [query.access, query.token]
+    const rUI = new ReflectUI(tokens); // eslint-disable-line no-undef
+
+    rUI.withParameters([
+      { field: 'User ID', op: '=', value: query.user }
+    ])
 
     rUI.view(element, 'checkins', 'test');
   }
