@@ -16,7 +16,7 @@ class AuthButton extends React.Component {
   render() {
     return (
       <div className="SignIn-container">
-        <a href='http://127.0.0.1:4200/authenticate'>
+        <a href='http://checkinsdotme.herokuapp.com/authenticate'>
           <img className="SignIn-button" src={ connectButton } alt="Connect with Foursquare"/>
         </a>
       </div>

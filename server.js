@@ -20,6 +20,8 @@ const clientId = config.clientId || process.env.CLIENT_ID;
 const clientSecret = config.clientSecret || process.env.CLIENT_SECRET;
 const callbackURL = config.callbackURL || process.env.CALLBACK_URL;
 const sessionSecret = config.session || process.env.SESSION;
+const reflectAccess = config.reflectAccess || process.env.REFLECT_ACCESS;
+const reflectSecret = config.reflectSecret || process.env.REFLECT_SECRET;
 const app = express();
 
 const authStrategy = new FoursquareStrategy({
@@ -137,9 +139,10 @@ const routeHandlers = {
       value: req.user.id
     }];
 
-    const token = reflect.generateToken(config.reflectSecret, params);
+    console.log(reflectSecret, params);
+    const token = reflect.generateToken(reflectSecret, params);
 
-    res.redirect(`http://127.0.0.1:3000/stats?token=${token}&access=${config.reflectAccess}&user=${req.user.id}`);
+    res.redirect(`http://checkins.surge.sh/stats?token=${token}&access=${reflectAccess}&user=${req.user.id}`);
   },
   webhook: (req, res) => {
     const checkin = JSON.parse(req.body.checkin);
