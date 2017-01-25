@@ -83,6 +83,8 @@ const statics = {
       venue: checkin.venue.name,
       checkinTime: checkin.createdAt,
       city: checkin.venue.location.city,
+      lat: checkin.venue.location.lat,
+      lng: checkin.venue.location.lng,
       state: checkin.venue.location.state,
       country: checkin.venue.location.country,
       address: checkin.venue.location.address,
@@ -139,7 +141,6 @@ const routeHandlers = {
       value: req.user.id
     }];
 
-    console.log(reflectSecret, params);
     const token = reflect.generateToken(reflectSecret, params);
 
     res.redirect(`http://checkins.surge.sh/stats?token=${token}&access=${reflectAccess}&user=${req.user.id}`);

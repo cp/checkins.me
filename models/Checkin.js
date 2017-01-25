@@ -19,6 +19,8 @@ module.exports = function(sequelize, DataTypes) {
       score: DataTypes.INTEGER,
       venue: DataTypes.STRING,
       category: DataTypes.STRING,
+      lat: DataTypes.FLOAT,
+      lng: DataTypes.FLOAT,
       city: DataTypes.STRING,
       state: DataTypes.STRING,
       country: DataTypes.STRING,
